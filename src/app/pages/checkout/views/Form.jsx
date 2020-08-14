@@ -12,6 +12,7 @@ import {
     paymentCreditIntent,
     getFirebaseAuth,
 } from "../../checkout/Checkout.action"
+import { Fallback } from './fallback/fallback'
 import firebase from "firebase/app"
 import PropTypes from "prop-types"
 import queryString from "query-string"
@@ -275,9 +276,10 @@ class Form extends Component {
 
     render() {
         const signal = !this.state.result ? (
-            <Typography variant="caption">
-                The transaction is either expired, deleted, already paid or does not exist
-            </Typography>
+            <Fallback/>
+            // <Typography variant="caption">
+            //     The transaction is either expired, deleted, already paid or does not exist
+            // </Typography>
         ) : this.state.result === "getting" ? (
             <CircularProgress
                 style={{
