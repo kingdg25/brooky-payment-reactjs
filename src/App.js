@@ -2,7 +2,7 @@ import React from "react"
 import { Provider } from "react-redux"
 import { createStore, combineReducers, compose, applyMiddleware } from "redux"
 import thunk from "redux-thunk"
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
 import checkout from "./app/pages/checkout/Checkout.reducers"
 import CheckoutForm from "./app/pages/checkout/views/Form"
@@ -20,7 +20,7 @@ const App = () => (
                 <Switch>
                     <Route exact path="/:id" component={CheckoutForm} />
                     <Route path="/Summary/:id" component={Summary} />
-                    <Route render={() => <Redirect to={{ pathname: "/:id" }} />} />
+                    <Route render={() => (window.location = "https://brooky.io")} />
                 </Switch>
             </div>
         </Router>
