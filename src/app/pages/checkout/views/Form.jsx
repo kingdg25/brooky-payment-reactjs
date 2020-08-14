@@ -187,7 +187,7 @@ class Form extends Component {
                     .onSnapshot(theData => {
                         const result = theData.data()
                         if (theData.exists){
-                            if (result.paid !== "Success") {
+                            if (result.paid !== "Success" && result.paid !== "Expired") {
                                 this.setState({
                                     result: result,
                                     note: result.note,
