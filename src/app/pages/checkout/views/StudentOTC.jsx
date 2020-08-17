@@ -105,8 +105,8 @@ class StudentOTC extends Component {
         this.updateWindowDimensions()
         window.addEventListener("resize", this.updateWindowDimensions)
         await this.setState({ outlet: this.props.props.paymentType })
-        if (this.props.props.email) {
-            this.setState({ dPayEmail: this.props.props.email})
+        if (this.props.props.email || this.props.props.mobileNo) {
+            this.setState({ dPayEmail: this.props.props.email || "", mobileNo: this.props.props.mobileNo || ""})
             const isValidOTC = this.validateOTC()
             if (isValidOTC) {
                 // await this.props.setTotalPayment({
@@ -164,7 +164,7 @@ class StudentOTC extends Component {
                             style={{ width: "100%", marginBottom: "1%" }}
                             id="dPayEmail"
                             label="Email Address"
-                            value={this.state.dPayEmail}
+                            value={this.props.props.email || ""}
                             onChange={this.handleChange}
                             required
                             // disabled={this.state.dPayEmail}
@@ -175,7 +175,7 @@ class StudentOTC extends Component {
                             style={{ width: "100%", marginBottom: "1%" }}
                             id="mobileNo"
                             label="Mobile Number"
-                            value={this.state.mobileNo}
+                            value={this.props.props.mobileNo || ""}
                             onChange={this.handleChange}
                             required
                             // disabled={!this.state.form}

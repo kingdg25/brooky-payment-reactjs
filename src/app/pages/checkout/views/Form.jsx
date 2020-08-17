@@ -197,8 +197,8 @@ class Form extends Component {
                                     // firstName: result.firstName,
                                     description: result.description,
                                     schoolCode: `${result.client_code}`.toLowerCase,
-                                    email: result.email || "",
-                                    mobileNo: result.mobileNo,
+                                    email: result.buyers_email || "",
+                                    mobileNo: result.buyers_mobile_number || "",
                                     skipRoute: result.skip_route,
                                 })
                             } else {
