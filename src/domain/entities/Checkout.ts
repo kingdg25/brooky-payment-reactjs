@@ -92,7 +92,7 @@ export class GCashSourceID {
     }
 }
 export class TotalPayment {
-    amountWela: number
+    amountBrooky: number
     amountGateway: number
     amountTotal: number
     paymentType: string
@@ -107,7 +107,7 @@ export class TotalPayment {
         outletId: string,
     ) {
         this.amountTotal = amountTotal
-        this.amountWela = amountWela
+        this.amountBrooky = amountWela
         this.amountGateway = amountGateway
         this.paymentType = paymentType
         this.transactionID = transactionID

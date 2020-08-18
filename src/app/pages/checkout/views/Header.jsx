@@ -176,7 +176,7 @@ class Header extends Component {
                                         variant="subtitle2"
                                         gutterBottom
                                     >
-                                        {this.props.data.docname}
+                                        {this.props.data.doc_reference || ""}
                                     </Typography>
                                 </Grid>
                                 <Grid

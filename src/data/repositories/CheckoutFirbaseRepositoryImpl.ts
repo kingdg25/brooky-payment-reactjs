@@ -95,7 +95,7 @@ export class CheckoutRepositoryImpl implements CheckoutRepository {
         await newRef.update({
             amountTotal: data.amountTotal,
             amountGateway: data.amountGateway,
-            amountBrooky: data.amountWela,
+            amountBrooky: data.amountBrooky,
             paymentType: data.paymentType,
         })
     }

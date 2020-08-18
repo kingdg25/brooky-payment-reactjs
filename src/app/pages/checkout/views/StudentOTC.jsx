@@ -164,7 +164,7 @@ class StudentOTC extends Component {
                             style={{ width: "100%", marginBottom: "1%" }}
                             id="dPayEmail"
                             label="Email Address"
-                            value={this.props.props.email || ""}
+                            value={this.state.dPayEmail || ""}
                             onChange={this.handleChange}
                             required
                             // disabled={this.state.dPayEmail}
@@ -175,7 +175,7 @@ class StudentOTC extends Component {
                             style={{ width: "100%", marginBottom: "1%" }}
                             id="mobileNo"
                             label="Mobile Number"
-                            value={this.props.props.mobileNo || ""}
+                            value={this.state.mobileNo || ""}
                             onChange={this.handleChange}
                             required
                             // disabled={!this.state.form}

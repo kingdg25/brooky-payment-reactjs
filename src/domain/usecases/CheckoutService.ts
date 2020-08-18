@@ -77,7 +77,7 @@ export class CheckoutServiceImpl {
                 data.amountGateway = 20
             }
         }
-        data.amountWela = Math.round(data.amountTotal - initialVal - data.amountGateway)
+        data.amountBrooky = Math.round(data.amountTotal - initialVal - data.amountGateway)
         this.checkoutRepo.setTotalPayment(data)
     }
 
