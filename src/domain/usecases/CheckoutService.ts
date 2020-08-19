@@ -75,7 +75,7 @@ export class CheckoutServiceImpl {
                 data.amountTotal = Math.round(data.amountTotal * 1.05 + 15)
                 data.amountGateway = Math.round(data.amountTotal * 0.04 + 15)
             } else {
-                data.amountTotal = Math.round(data.amountTotal * 1.01 + 20)
+                data.amountTotal = Math.round(data.amountTotal * 1.01 + 25)
                 data.amountGateway = 20
             }
         }
