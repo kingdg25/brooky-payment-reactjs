@@ -198,7 +198,7 @@ class PaymentSummary extends Component {
                                                 ? formatter.format(Math.round((Number(this.props.props.amount)) * 0.041))
                                                 : this.props.props.paymentType === "7/11"
                                                 ? formatter.format(Math.round((Number(this.props.props.amount)) * 0.05 + 15))
-                                                : formatter.format(Math.round((Number(this.props.props.amount)) * 0.01 + 20))}
+                                                : formatter.format(Math.round((Number(this.props.props.amount)) * 0.01 + 25))}
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -231,7 +231,7 @@ class PaymentSummary extends Component {
                                                 ? formatter.format(Math.round((Number(this.props.props.amount)) * 1.041))
                                                 : this.props.props.paymentType === "7/11"
                                                 ? formatter.format(Math.round((Number(this.props.props.amount)) * 1.05 + 15))
-                                                : formatter.format(Math.round((Number(this.props.props.amount)) * 1.01 + 20))}
+                                                : formatter.format(Math.round((Number(this.props.props.amount)) * 1.01 + 25))}
                                         </Typography>
                                     </Grid>
                                 </Grid>

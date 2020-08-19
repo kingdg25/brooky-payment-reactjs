@@ -326,7 +326,7 @@ class Summary extends Component {
                                                 ? formatter.format(Math.round((Number(this.state.amount)) * 1.041))
                                                 : this.state.paymentType === "7/11"
                                                 ? formatter.format(Math.round((Number(this.state.amount)) * 1.05 + 15))
-                                                : formatter.format(Math.round((Number(this.state.amount)) * 1.01 + 20))}
+                                                : formatter.format(Math.round((Number(this.state.amount)) * 1.01 + 25))}
                                         </Typography>
                                     </Grid>
                                 </Grid>
