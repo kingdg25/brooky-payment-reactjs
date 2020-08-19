@@ -153,7 +153,8 @@ class StudentCreditCard extends Component {
                 await this.props.setTotalPayment({
                     transactionID: this.props.props.transactionID,
                     amountTotal: this.props.props.amount,
-                    paymentType: "credit",
+                    paymentType: "paymongo",
+                    outletId: "credit"
                 })
                 const response = await this.props.paymentCredit({
                     schoolCode: this.props.props.schoolCode,

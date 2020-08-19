@@ -97,6 +97,7 @@ export class CheckoutRepositoryImpl implements CheckoutRepository {
             amountGateway: data.amountGateway,
             amountBrooky: data.amountBrooky,
             paymentType: data.paymentType,
+            outletId: data.outletId
         })
     }
 
