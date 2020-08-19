@@ -50,6 +50,7 @@ const initialState = {
     parentNumberErr: "",
     dialog: false,
     paymentType: "",
+    outletId: "",
     creditName: "",
     creditNumber: "",
     creditYear: "",
@@ -95,6 +96,7 @@ class Summary extends Component {
                         paymentType: result.paymentType,
                         schoolCode: result.client_code,
                         refno: result.refno,
+                        outletId: result.outletId
                     })
                 } else {
                     this.setState({ result: undefined })
@@ -288,12 +290,35 @@ class Summary extends Component {
                                             style={{ color: "lightslategray" }}
                                             gutterBottom
                                         >
-                                            Payment Type
+                                            Payment Gateway
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={6}>
                                         <Typography variant="subtitle1" style={{ textAlign: "end" }} gutterBottom>
                                             {this.state.paymentType.toUpperCase()}
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
+                                <Grid
+                                    container
+                                    spacing={0}
+                                    direction="row"
+                                    justify="center"
+                                    alignItems="center"
+                                    style={{ padding: "8px" }}
+                                >
+                                    <Grid item xs={6}>
+                                        <Typography
+                                            variant="subtitle1"
+                                            style={{ color: "lightslategray" }}
+                                            gutterBottom
+                                        >
+                                            Payment Channel
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        <Typography variant="subtitle1" style={{ textAlign: "end" }} gutterBottom>
+                                            {this.state.outletId.toUpperCase()}
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -320,11 +345,11 @@ class Summary extends Component {
                                             style={{ textAlign: "end", fontWeight: "bold" }}
                                             gutterBottom
                                         >
-                                            {this.state.paymentType === "credit"
+                                            {this.state.outletId === "credit"
                                                 ? formatter.format(Math.round((Number(this.state.amount)) * 1.048 + 15))
-                                                : this.state.paymentType === "gcash"
+                                                : this.state.outletId === "gcash"
                                                 ? formatter.format(Math.round((Number(this.state.amount)) * 1.041))
-                                                : this.state.paymentType === "7/11"
+                                                : this.state.outletId === "7/11"
                                                 ? formatter.format(Math.round((Number(this.state.amount)) * 1.05 + 15))
                                                 : formatter.format(Math.round((Number(this.state.amount)) * 1.01 + 25))}
                                         </Typography>
