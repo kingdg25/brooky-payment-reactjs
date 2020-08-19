@@ -62,13 +62,15 @@ export class CheckoutServiceImpl {
     async setTotalPayment(data: TotalPayment) {
         console.log(data.outletId)
         const initialVal = data.amountTotal
-        if (data.paymentType === "credit") {
-            data.amountTotal = Math.round(data.amountTotal * 1.048 + 15)
-            data.amountGateway = Math.round(data.amountTotal * 0.035 + 15)
-        } else if (data.paymentType === "gcash") {
-            data.amountTotal = Math.round(data.amountTotal * 1.041)
-            data.amountGateway = Math.round(data.amountTotal * 0.029)
-        } else if (data.paymentType === "dragonPay") {
+         if (data.paymentType === "paymongo"){
+            if (data.outletId === "credit") {
+                data.amountTotal = Math.round(data.amountTotal * 1.048 + 15)
+                data.amountGateway = Math.round(data.amountTotal * 0.035 + 15)
+            } else if (data.outletId === "gcash") {
+                data.amountTotal = Math.round(data.amountTotal * 1.041)
+                data.amountGateway = Math.round(data.amountTotal * 0.029)
+            }
+         } else if (data.paymentType === "dragonPay") {
             if (data.outletId === "7/11") {
                 data.amountTotal = Math.round(data.amountTotal * 1.05 + 15)
                 data.amountGateway = Math.round(data.amountTotal * 0.04 + 15)
