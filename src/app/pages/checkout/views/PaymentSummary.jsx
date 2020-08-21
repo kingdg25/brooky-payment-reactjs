@@ -254,7 +254,7 @@ class PaymentSummary extends Component {
                                 ? "*GCash - 4.1%"
                                 : this.props.props.paymentType === "7/11"
                                 ? "*7/11 - 5% + 15"
-                                : "*OTC - 1% + 20"}
+                                : "*OTC - 1% + 25"}
                         </Typography>
                     </Grid>
                 </Grid>
