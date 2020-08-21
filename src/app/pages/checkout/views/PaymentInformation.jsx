@@ -284,7 +284,7 @@ class PaymentInformation extends Component {
                                 <CardMedia image="/ewallet.png" style={{ height: 100, width: 150 }} />
                                 <CardContent>
                                     <Typography variant="h6" style={{ maxWidth: "300px", width: this.state.width / 2 }}>
-                                        Online Banking / E-Wallet
+                                        Online Banking
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>

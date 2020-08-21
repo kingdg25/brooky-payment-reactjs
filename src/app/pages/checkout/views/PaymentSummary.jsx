@@ -16,7 +16,7 @@ const paymentDict = {
     CEBL: "Cebuana Lhuillier",
     MLH: "M. Lhuillier",
     RDP: "RD Pawnshop",
-    OB: "Online Banking / E-Wallet",
+    OB: "Online Banking",
     OTCA: "Over-the-Counter / ATM Banking",
 }
 
