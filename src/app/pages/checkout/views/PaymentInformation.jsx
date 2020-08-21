@@ -334,7 +334,7 @@ class PaymentInformation extends Component {
                                     variant="subtitle2"
                                     style={{ textAlign: "justify", whiteSpace: "pre-line", color: "black" }}
                                 >
-                                    {`${this.props.props.note}`.replace("\\n", "\n")}
+                                    {`${this.props.props.note || ""}`.replace("\\n", "\n")}
                                 </Typography>
                             </Paper>
                         </Paper>
