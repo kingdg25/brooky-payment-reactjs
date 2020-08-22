@@ -8,12 +8,21 @@ import CardActionArea from "@material-ui/core/CardActionArea"
 import CardContent from "@material-ui/core/CardContent"
 import CardMedia from "@material-ui/core/CardMedia"
 import Paper from "@material-ui/core/Paper"
+import { List, ListItem, ListItemIcon , Divider, Container, Box } from '@material-ui/core'
+import { withStyles } from '@material-ui/core'
+import { ArrowForwardIosOutlined, TripOrigin, StopRounded  } from '@material-ui/icons/'
 
 const formatter = new Intl.NumberFormat("en-PH", {
     style: "currency",
     currency: "PHP",
     minimumFractionDigits: 2,
 })
+
+export const styles = {
+    divider: {
+      background: '#D2D2D2',
+    },
+};
 
 class PaymentInformation extends Component {
     constructor(props) {
@@ -54,6 +63,7 @@ class PaymentInformation extends Component {
 
     render() {
         // console.log(this.props)
+        const { classes } = this.props
         const skipPayments = this.props.props.skipRoute ? (
             <Grid item xs={12}>
                 <Grid
@@ -144,6 +154,7 @@ class PaymentInformation extends Component {
                             </Grid>
                         </Grid>
                     </Grid>
+                    <Divider className={classes.divider} variant="fullWidth" orientation="horizontal" />
                     <Grid item xs={12}>
                         <Grid
                             container
@@ -168,26 +179,6 @@ class PaymentInformation extends Component {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item xs={12}>
-                        <Grid
-                            container
-                            spacing={3}
-                            direction="row"
-                            justify="flex-start"
-                            alignItems="center"
-                            style={{ flexGrow: "1" }}
-                        >
-                            <Grid item xs={12}>
-                                <Typography
-                                    style={{ textAlign: "center", fontWeight: "bold", color: "lightslategray" }}
-                                    variant="subtitle2"
-                                    gutterBottom
-                                >
-                                    {"ONLINE PAYMENT"}
-                                </Typography>
-                            </Grid>
-                        </Grid>
-                    </Grid>
                 </Grid>
                 <Grid
                     container
@@ -198,7 +189,43 @@ class PaymentInformation extends Component {
                     style={{ flexGrow: "1" }}
                 >
                     <Grid item xs={12}>
-                        <Card
+                    <Container maxWidth="xs" disableGutters>
+                        <List component="nav" aria-label="mailbox folders">
+                            <ListItem button onClick={() => this.handleClick("credit")} >
+                                <ListItemIcon>
+                                    <TripOrigin />
+                                </ListItemIcon>
+                                <Box height="40px" component="span" m={1}>
+                                    <CardMedia image="/card.png" style={{ height: 50, width: 150 }} />
+                                </Box>
+                            </ListItem>
+                            <Divider />
+                            <ListItem button onClick={() => this.handleClick("gcash")}>
+                                <ListItemIcon>
+                                    <TripOrigin />
+                                </ListItemIcon>
+                                <Box height="40px" component="span" m={1}>
+                                    <CardMedia image="/gcash_full.png" style={{ height: 40, width: 150 }} />
+                                </Box>
+                            </ListItem>
+                            <ListItem button onClick={() => this.handleClick("OTCA")}>
+                                <ListItemIcon>
+                                    <TripOrigin />
+                                </ListItemIcon>
+                                <Box height="40px" component="span" m={1}>
+                                    <Typography align="center" variant="h6" >Over-the-Counter / ATM Banking</Typography>
+                                </Box>
+                            </ListItem>
+                            <ListItem button onClick={() => this.handleClick("OB")}>
+                                <ListItemIcon>
+                                    <TripOrigin />
+                                </ListItemIcon>
+                                <Box height="40px" component="span" m={1}>
+                                    <Typography align="center" variant="h6" >Online Banking</Typography>
+                                </Box>
+                            </ListItem>
+                        </List>
+                        {/* <Card
                             style={{
                                 width: "100%",
                                 maxWidth: this.state.width > 830 ? "49%" : "100%",
@@ -238,12 +265,6 @@ class PaymentInformation extends Component {
                                     <Typography variant="h6" style={{ maxWidth: "300px", width: this.state.width / 2 }}>
                                         GCash
                                     </Typography>
-                                    {/* <Typography
-                                        variant="body1"
-                                        style={{ maxWidth: "150px", width: this.state.width / 2 }}
-                                    >
-                                        (Not available)
-                                    </Typography> */}
                                 </CardContent>
                             </CardActionArea>
                         </Card>
@@ -288,7 +309,7 @@ class PaymentInformation extends Component {
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
-                        </Card>
+                        </Card> */}
                         {/* <Card
                             style={{
                                 width: "100%",
@@ -310,6 +331,7 @@ class PaymentInformation extends Component {
                                 </CardContent>
                             </CardActionArea>
                         </Card> */}
+                        </ Container>
                     </Grid>
                 </Grid>
                 {skipPayments}
@@ -351,7 +373,7 @@ PaymentInformation.propTypes = {
     skipRoute: PropTypes.string,
 }
 
-export default PaymentInformation
+export default withStyles(styles)(PaymentInformation)
 
 
 
