@@ -128,7 +128,7 @@ class PaymentInformation extends Component {
                                     {this.props.props.description}
                                 </Typography>
                                 <Typography
-                                    style={{ textAlign: "center", fontWeight: "lighter" }}
+                                    style={{ textAlign: "center", fontWeight: "lighter", color: "#2680eb" }}
                                     variant="h2"
                                     gutterBottom
                                 >
