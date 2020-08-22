@@ -158,7 +158,7 @@ class PaymentInformation extends Component {
                                     style={{
                                         textAlign: this.state.width > 830 ? "start" : "center",
                                         fontWeight: "bold",
-                                        color: "black",
+                                        color: "#4b4b4b",
                                     }}
                                     variant="subtitle1"
                                     gutterBottom
