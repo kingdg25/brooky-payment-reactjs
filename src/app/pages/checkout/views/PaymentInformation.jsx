@@ -163,7 +163,7 @@ class PaymentInformation extends Component {
                                     variant="subtitle1"
                                     gutterBottom
                                 >
-                                    {"SELECT PAYMENT METHOD"}
+                                    {"PAYMENT METHOD"}
                                 </Typography>
                             </Grid>
                         </Grid>
