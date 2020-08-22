@@ -4,12 +4,24 @@ import PropTypes from "prop-types"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import Container from "@material-ui/core/Container"
+import {
+    Divider
+} from '@material-ui/core'
+import { makeStyles, withStyles } from '@material-ui/core'
 
 const paymentDict = {
     credit: "Credit/Debit Card",
     gcash: "GCash",
     dragonPay: "Other Payment Channels",
 }
+
+const styles = {
+    divider: {
+      background: 'white',
+      marginTop: "15px",
+      marginBottom: "15px"
+    },
+};
 
 class Header extends Component {
     constructor(props) {
@@ -32,6 +44,7 @@ class Header extends Component {
 
     render() {
         // console.log(window.innerWidth)
+        const { classes } = this.props
         return (
             <div>
                 <Container maxWidth={false} disableGutters>
@@ -44,44 +57,27 @@ class Header extends Component {
                         style={{ backgroundColor: "#2680EB", color: "white", flexGrow: 1 }}
                     >
                         <Grid item md={12}>
-                            <Container maxWidth={"md"} disableGutters>
+                            <Container maxWidth="md" disableGutters>
                                 <Grid
                                     container
                                     direction="row"
                                     justify="center"
                                     alignItems="center"
+                                    alignContent="space-between"
                                     style={{ backgroundColor: "#2680EB", color: "white", flexGrow: 1 }}
                                 >
-                                    <Grid item xs={6}>
+                                    <Grid item md={12} justify="flex-start" alignItems="center" container>
                                         <Typography style={{ textAlign: "start" }} variant="h5" gutterBottom>
                                             <img
                                                 src="/brooky-logo.png"
-                                                alt="school_logo"
+                                                alt="Brooky Logo"
                                                 style={{width: "100px", marginTop: "24px" }}
                                                 // style={{ height: "100px", width: "250px", marginTop: "24px" }}
                                             />
                                         </Typography>
-                                        {/* <img
-                                            src="/school_logo.png"
-                                            alt="school_logo"
-                                            style={{ height: "100px", width: "100px" }}
-                                        /> */}
-                                    </Grid>
-                                    <Grid item xs={3} style={{ marginTop: "1%" }}>
-                                        {/* <Typography style={{ textAlign: "center" }} variant="h5" gutterBottom>
-                                            Rosevale School
-                                        </Typography>
-                                        <Typography style={{ textAlign: "center" }} variant="subtitle2" gutterBottom>
-                                            Phase 4 Xavier Estates, Cagayan de Oro City
-                                        </Typography> */}
-                                    </Grid>
-                                    <Grid item xs={3}>
-                                        <Typography style={{ textAlign: "end" }} variant="h5" gutterBottom>
-                                            {/* <img
-                                                src="/favicon.png"
-                                                alt="school_logo"
-                                                style={{ height: "100px", width: "100px", marginTop: "24px" }}
-                                            /> */}
+                                        <Divider className={classes.divider} variant="middle" orientation="vertical" flexItem light ></Divider>
+                                        <Typography style={{ marginTop: "4px" }} variant="body1" align="center">
+                                            Checkout
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -213,4 +209,4 @@ Header.propTypes = {
     transactionID: PropTypes.string,
 }
 
-export default Header
+export default withStyles(styles)(Header)
