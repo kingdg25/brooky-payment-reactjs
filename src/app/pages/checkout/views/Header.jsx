@@ -87,15 +87,91 @@ class Header extends Component {
                 </Container>
                 <Grid
                     container
-                    spacing={3}
+                    spacing={0}
                     direction="row"
                     justify="center"
                     alignItems="center"
                     style={{ backgroundColor: "white", color: "black", padding: "8px" }}
                 >
                     <Container maxWidth={"md"} disableGutters style={{ padding: "8px" }}>
-                        <Grid item md={12}>
-                            <Grid
+                        <Grid item md={12} spacing={2} direction="row" item container>
+                            <Grid md={6} direction="row" item container>
+                                <Grid md={12} spacing={3} direction="row" item container>
+                                    <Grid item md={6}>
+                                        <Typography
+                                            style={{ textAlign: "start", color: "lightslategray" }}
+                                            variant="subtitle2"
+                                            gutterBottom
+                                        >
+                                            {this.state.width > 630 ? "Refrence Number" : "Ref. No."}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item md={6}>
+                                        <Typography
+                                            style={{
+                                                textAlign: window.innerWidth > 450 ? "start" : "center",
+                                                color: "#2680EB",
+                                                fontWeight: "bold",
+                                            }}
+                                            variant="subtitle2"
+                                            gutterBottom
+                                        >
+                                            {this.props.transactionID}
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
+                                <Grid md={12} spacing={3} direction="row" item container>
+                                    <Grid item md={6}>
+                                        <Typography
+                                            style={{ textAlign: "start", color: "lightslategray" }}
+                                            variant="subtitle2"
+                                            gutterBottom
+                                        >
+                                            Document ID
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item md={6}>
+                                        <Typography
+                                            style={{
+                                                textAlign: window.innerWidth > 450 ? "start" : "center",
+                                                color: "#2680EB",
+                                                fontWeight: "bold",
+                                            }}
+                                            variant="subtitle2"
+                                            gutterBottom
+                                        >
+                                            {this.props.data.doc_reference || ""}
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                            <Grid md={6} direction="row" item container>
+                                <Grid md={12} spacing={3} direction="row" item container>
+                                    <Grid item md={6}>
+                                        <Typography
+                                            style={{ textAlign: "start", color: "lightslategray" }}
+                                            variant="subtitle2"
+                                            gutterBottom
+                                        >
+                                            <b>Buyer Details</b>
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item md={6}>
+                                        <Typography
+                                            style={{
+                                                textAlign: window.innerWidth > 450 ? "start" : "center",
+                                                color: "#2680EB",
+                                                fontWeight: "bold",
+                                            }}
+                                            variant="subtitle2"
+                                            gutterBottom
+                                        >
+                                            {this.props.transactionID}
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                            {/* <Grid
                                 container
                                 direction="row"
                                 justify="center"
@@ -195,7 +271,7 @@ class Header extends Component {
                                     >
                                     </Typography>
                                 </Grid>
-                            </Grid>
+                            </Grid> */}
                         </Grid>
                     </Container>
                 </Grid>
