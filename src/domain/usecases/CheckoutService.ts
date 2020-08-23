@@ -67,7 +67,7 @@ export class CheckoutServiceImpl {
                 data.amountTotal = Math.round(data.amountTotal * 1.048 + 15)
                 data.amountGateway = Math.round(data.amountTotal * 0.035 + 15)
             } else if (data.outletId === "gcash") {
-                data.amountTotal = Math.round(data.amountTotal * 1.045)
+                data.amountTotal = Math.round(data.amountTotal * 1.045 + 10)
                 data.amountGateway = Math.round(data.amountTotal * 0.029)
             }
          } else if (data.paymentType === "dragonPay") {
