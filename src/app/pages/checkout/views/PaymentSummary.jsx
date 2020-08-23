@@ -195,7 +195,7 @@ class PaymentSummary extends Component {
                                             {this.props.props.paymentType === "credit"
                                                 ? formatter.format(Math.round((Number(this.props.props.amount)) * 0.048 + 15))
                                                 : this.props.props.paymentType === "gcash"
-                                                ? formatter.format(Math.round((Number(this.props.props.amount)) * 0.041))
+                                                ? formatter.format(Math.round((Number(this.props.props.amount)) * 0.045))
                                                 : this.props.props.paymentType === "7/11"
                                                 ? formatter.format(Math.round((Number(this.props.props.amount)) * 0.05 + 15))
                                                 : formatter.format(Math.round((Number(this.props.props.amount)) * 0.01 + 25))}
@@ -228,7 +228,7 @@ class PaymentSummary extends Component {
                                             {this.props.props.paymentType === "credit"
                                                 ? formatter.format(Math.round((Number(this.props.props.amount)) * 1.048 + 15))
                                                 : this.props.props.paymentType === "gcash"
-                                                ? formatter.format(Math.round((Number(this.props.props.amount)) * 1.041))
+                                                ? formatter.format(Math.round((Number(this.props.props.amount)) * 1.045))
                                                 : this.props.props.paymentType === "7/11"
                                                 ? formatter.format(Math.round((Number(this.props.props.amount)) * 1.05 + 15))
                                                 : formatter.format(Math.round((Number(this.props.props.amount)) * 1.01 + 25))}
@@ -251,7 +251,7 @@ class PaymentSummary extends Component {
                             {this.props.props.paymentType === "credit"
                                 ? "*Credit/Debit Card - 4.8% + 15"
                                 : this.props.props.paymentType === "gcash"
-                                ? "*GCash - 4.1%"
+                                ? "*GCash - 4.5%"
                                 : this.props.props.paymentType === "7/11"
                                 ? "*7/11 - 5% + 15"
                                 : "*OTC - 1% + 25"}

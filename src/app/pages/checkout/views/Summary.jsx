@@ -348,7 +348,7 @@ class Summary extends Component {
                                             {this.state.outletId === "credit"
                                                 ? formatter.format(Math.round((Number(this.state.amount)) * 1.048 + 15))
                                                 : this.state.outletId === "gcash"
-                                                ? formatter.format(Math.round((Number(this.state.amount)) * 1.041))
+                                                ? formatter.format(Math.round((Number(this.state.amount)) * 1.045))
                                                 : this.state.outletId === "7/11"
                                                 ? formatter.format(Math.round((Number(this.state.amount)) * 1.05 + 15))
                                                 : formatter.format(Math.round((Number(this.state.amount)) * 1.01 + 25))}
