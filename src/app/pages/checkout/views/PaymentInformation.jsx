@@ -199,7 +199,6 @@ class PaymentInformation extends Component {
                                     <CardMedia image="/card.png" style={{ height: 50, width: 150 }} />
                                 </Box>
                             </ListItem>
-                            <Divider />
                             <ListItem button onClick={() => this.handleClick("gcash")}>
                                 <ListItemIcon>
                                     <TripOrigin />
