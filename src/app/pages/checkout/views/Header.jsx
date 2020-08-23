@@ -160,7 +160,7 @@ class Header extends Component {
                                         <Grid item md={12}>
                                             <Typography
                                                 style={{
-                                                    textAlign: window.innerWidth > 450 ? "start" : "center",
+                                                    textAlign: "start",
                                                     color: "#707070",
                                                     fontWeight: "bold",
                                                 }}
@@ -173,7 +173,7 @@ class Header extends Component {
                                         <Grid item md={12}>
                                             <Typography
                                                 style={{
-                                                    textAlign: window.innerWidth > 450 ? "start" : "center",
+                                                    textAlign: "start",
                                                     color: "#707070",
                                                 }}
                                                 variant="subtitle1"
@@ -185,7 +185,7 @@ class Header extends Component {
                                         <Grid item md={12}>
                                             <Typography
                                                 style={{
-                                                    textAlign: window.innerWidth > 450 ? "start" : "center",
+                                                    textAlign: "start",
                                                     color: "#707070",
                                                 }}
                                                 variant="subtitle2"
@@ -210,7 +210,7 @@ class Header extends Component {
                                         <Grid item md={12}>
                                             <Typography
                                                 style={{
-                                                    textAlign: window.innerWidth > 450 ? "start" : "center",
+                                                    textAlign: "start",
                                                     color: "#707070",
                                                 }}
                                                 variant="subtitle2"
@@ -222,7 +222,7 @@ class Header extends Component {
                                         <Grid item md={12}>
                                             <Typography
                                                 style={{
-                                                    textAlign: window.innerWidth > 450 ? "start" : "center",
+                                                    textAlign: "start",
                                                     color: "#707070",
                                                 }}
                                                 variant="subtitle2"
@@ -234,7 +234,7 @@ class Header extends Component {
                                         <Grid item md={12}>
                                             <Typography
                                                 style={{
-                                                    textAlign: window.innerWidth > 450 ? "start" : "center",
+                                                    textAlign: "start",
                                                     color: "#707070",
                                                 }}
                                                 variant="subtitle2"
@@ -246,7 +246,7 @@ class Header extends Component {
                                         <Grid item md={12}>
                                             <Typography
                                                 style={{
-                                                    textAlign: window.innerWidth > 450 ? "start" : "center",
+                                                    textAlign: "start",
                                                     color: "#707070",
                                                 }}
                                                 variant="subtitle2"
