@@ -212,14 +212,16 @@ class PaymentInformation extends Component {
                                 <ListItemIcon>
                                     <TripOrigin />
                                 </ListItemIcon>
+                                <CardMedia image="/shipping_and_delivery.png" style={{ height: 40, width: 80 }} />
                                 <Box height="40px" component="span" m={1}>
-                                    <Typography align="center" variant="h6" >Over-the-Counter / ATM Banking</Typography>
+                                    <Typography align="center" variant="subtitle1" >Over-the-Counter / ATM Banking</Typography>
                                 </Box>
                             </ListItem>
                             <ListItem button onClick={() => this.handleClick("OB")}>
                                 <ListItemIcon>
                                     <TripOrigin />
                                 </ListItemIcon>
+                                <CardMedia image="/wallet.png" style={{ height: 40, width: 70 }} />
                                 <Box height="40px" component="span" m={1}>
                                     <Typography align="center" variant="h6" >Online Banking</Typography>
                                 </Box>
