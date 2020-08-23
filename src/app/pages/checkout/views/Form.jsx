@@ -289,7 +289,7 @@ class Form extends Component {
                 }}
             />
         ) : (
-            <div>
+            <div style={{backgroundColor: "white"}}>
                 <CssBaseline />
                 <Header data={this.state.result} paymentType={this.state.paymentType} transactionID={this.state.transactionID} />
                 <Container maxWidth={"md"} style={{ marginBottom: "2%", padding: "8px" }} disableGutters>
