@@ -152,7 +152,7 @@ class StudentOTC extends Component {
                 >
                     <Grid item xs={12}>
                         <FormLabel component="legend" style={{ padding: "8px", color: "black" }}>
-                            {"Other Payment Channels"}
+                            {"Billing Details"}
                         </FormLabel>
                         <Typography variant="subtitle1" style={{ padding: "8px", textAlign: "center" }} gutterBottom>
                             {"Pay using our Other Payment Channels"}
