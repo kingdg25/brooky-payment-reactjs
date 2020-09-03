@@ -132,3 +132,11 @@ export class CardNumber {
         this.cardNumber = cardNumber
     }
 }
+
+
+export class ERPNextDetails {
+    details: object
+    constructor(details: object){
+        this.details = details
+    }
+}

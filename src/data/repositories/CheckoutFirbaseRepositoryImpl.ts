@@ -11,6 +11,7 @@ import {
     TotalPayment,
     EmailAddress,
     CardNumber,
+    ERPNextDetails,
 } from "../../domain/entities/Checkout"
 import { CheckoutRepository } from "../../domain/repositories/CheckoutRepository"
 import { firebaseApp } from "../common/firestore"
@@ -130,6 +131,11 @@ export class CheckoutRepositoryImpl implements CheckoutRepository {
         const dataRef = await db.collection("payments").get()
         console.log(dataRef)
         return this._checkoutsToMap(dataRef)
+    }
+
+    async getERPNextDetails(code: string): Promise<any>{
+        const dataRef = await db.collection("erpnext").doc(code).get()
+        return dataRef.data()
     }
 
     _checkoutsToMap (docRef: firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>): Checkout[] {

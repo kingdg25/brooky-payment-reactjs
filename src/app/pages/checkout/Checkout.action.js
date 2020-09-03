@@ -195,6 +195,21 @@ export const checkCard = data => {
     }
 }
 
+export const getERPNextDetails = data => {
+    return async dispatch => {
+        dispatch({ type: types.GET_DATA_REQUEST })
+        try {
+            const checkoutRepo = new CheckoutRepositoryImpl()
+            const checkoutService = new CheckoutServiceImpl(checkoutRepo)
+            const items = await checkoutService.getERPNextDetailsByCode(data)
+            dispatch({ type: types.GET_DATA_SUCCESS })
+            return items
+        } catch (error) {
+            dispatch({ type: types.GET_DATA_ERROR, error })
+        }
+    }
+}
+
 // TEST ACTION
 export const getCheckouts = () => {
     return async (dispatch) => {

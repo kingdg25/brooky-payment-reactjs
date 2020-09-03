@@ -11,6 +11,7 @@ import {
     TotalPayment,
     EmailAddress,
     CardNumber,
+    ERPNextDetails
 } from "../entities/Checkout"
 
 export interface CheckoutRepository {
@@ -26,4 +27,5 @@ export interface CheckoutRepository {
     getCheckoutData(data: TransactionID): Promise<Checkout>
     setEmailAddress(data: EmailAddress): void
     checkCard(data: CardNumber): Promise<PaymentReturn>
+    getERPNextDetails(code: string): Promise<ERPNextDetails>
 }

@@ -11,6 +11,7 @@ import {
     paymentOTC,
     paymentCreditIntent,
     getFirebaseAuth,
+    getERPNextDetails
 } from "../../checkout/Checkout.action"
 import { Fallback } from './fallback/fallback'
 import firebase from "firebase/app"
@@ -74,6 +75,9 @@ const initialState = {
     email: "",
     mobileNo: "",
     skipRoute: "",
+    headerLogo: "brooky-logo.png",
+    headerTextColor: "white",
+    headerBackGroundColor: "#2680EB"
 }
 
 class Form extends Component {
@@ -185,10 +189,14 @@ class Form extends Component {
                 this.paymentDataSubscribe = firebase.firestore()
                     .collection("payments")
                     .doc(this.props.match.params.id)
-                    .onSnapshot(theData => {
+                    .onSnapshot(async theData => {
                         const result = theData.data()
                         if (theData.exists){
                             if (result.paid !== "Success" && result.paid !== "Expired") {
+
+                                const erpnext_details = await this.props.getERPNextDetails(result.client_code)
+                                console.log("ERPNEXT ->", erpnext_details)
+
                                 this.setState({
                                     result: result,
                                     note: result.note,
@@ -200,6 +208,11 @@ class Form extends Component {
                                     email: result.buyers_email || "",
                                     mobileNo: result.buyers_mobile_number || "",
                                     skipRoute: result.skip_route,
+
+
+                                    headerLogo: erpnext_details.paymentHeaderLogo || this.state.headerLogo,
+                                    headerTextColor: erpnext_details.paymentHeaderTextColor || this.state.headerTextColor,
+                                    headerBackGroundColor: erpnext_details.paymentHeaderBackGroundColor || this.state.headerBackGroundColor
                                 })
                             } else {
                                 this.setState({ result: undefined })
@@ -372,6 +385,7 @@ const mapDispatchToProps = dispatch => ({
     getTransactionID: () => dispatch(getTransactionID()),
     paymentCreditIntent: data => dispatch(paymentCreditIntent(data)),
     getFirebaseAuth: data => dispatch(getFirebaseAuth(data)),
+    getERPNextDetails: data => dispatch(getERPNextDetails(data))
 })
 
 Form.propTypes = {
@@ -388,6 +402,7 @@ Form.propTypes = {
     paymentCreditIntent: PropTypes.func,
     match: PropTypes.object,
     getFirebaseAuth: PropTypes.func,
+    getERPNextDetails: PropTypes.func
 }
 
 export default connect(null, mapDispatchToProps)(Form)

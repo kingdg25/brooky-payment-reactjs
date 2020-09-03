@@ -11,6 +11,7 @@ import {
     TotalPayment,
     EmailAddress,
     CardNumber,
+    ERPNextDetails,
 } from "../entities/Checkout"
 import { CheckoutRepository } from "../repositories/CheckoutRepository"
 
@@ -100,5 +101,8 @@ export class CheckoutServiceImpl {
     }
     async getCheckouts(): Promise<Checkout[]> {
         return this.checkoutRepo.getCheckouts()
+    }
+    async getERPNextDetailsByCode(code: string): Promise<ERPNextDetails>{
+        return this.checkoutRepo.getERPNextDetails(code)
     }
 }
