@@ -32,10 +32,12 @@ class Header extends Component {
     componentDidMount() {
         this.updateWindowDimensions()
         window.addEventListener("resize", this.updateWindowDimensions)
+        console.log("Header Props",this.props)
     }
 
     componentWillUnmount() {
         window.removeEventListener("resize", this.updateWindowDimensions)
+        styles.divider.background = `${this.props.headerDetails.textColor}`
     }
 
     updateWindowDimensions() {
@@ -54,7 +56,7 @@ class Header extends Component {
                         direction="row"
                         justify="center"
                         alignItems="center"
-                        style={{ backgroundColor: "#2680EB", color: "white", flexGrow: 1 }}
+                        style={{ backgroundColor: `${this.props.headerDetails.backgroundColor}`, color: "white", flexGrow: 1 }}
                     >
                         <Grid item md={12}>
                             <Container maxWidth="md" disableGutters>
@@ -64,18 +66,18 @@ class Header extends Component {
                                     justify="center"
                                     alignItems="center"
                                     alignContent="space-between"
-                                    style={{ backgroundColor: "#2680EB", color: "white", flexGrow: 1 }}
+                                    style={{ backgroundColor: `${this.props.headerDetails.backgroundColor}`, color: `${this.props.headerDetails.textColor}`, flexGrow: 1 }}
                                 >
                                     <Grid item md={12} justify="flex-start" alignItems="center" container>
                                         <Typography style={{ textAlign: "start" }} variant="h5" gutterBottom>
                                             <img
-                                                src="/brooky-logo.png"
+                                                src={`/${this.props.headerDetails.logo}`}
                                                 alt="Brooky Logo"
-                                                style={{width: "100px", marginTop: "24px" }}
+                                                style={{maxHeight: "28px", marginTop: "24px" }}
                                                 // style={{ height: "100px", width: "250px", marginTop: "24px" }}
                                             />
                                         </Typography>
-                                        <Divider className={classes.divider} variant="middle" orientation="vertical" flexItem light ></Divider>
+                                        <Divider style={{background: `${this.props.headerDetails.textColor}`, marginTop: "15px", marginBottom: "15px"}} variant="middle" orientation="vertical" flexItem light ></Divider>
                                         <Typography style={{ marginTop: "4px" }} variant="body1" align="center">
                                             Checkout
                                         </Typography>

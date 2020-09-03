@@ -195,7 +195,6 @@ class Form extends Component {
                             if (result.paid !== "Success" && result.paid !== "Expired") {
 
                                 const erpnext_details = await this.props.getERPNextDetails(result.client_code)
-                                console.log("ERPNEXT ->", erpnext_details)
 
                                 this.setState({
                                     result: result,
@@ -304,7 +303,16 @@ class Form extends Component {
         ) : (
             <div style={{backgroundColor: "white"}}>
                 <CssBaseline />
-                <Header data={this.state.result} paymentType={this.state.paymentType} transactionID={this.state.transactionID} />
+                <Header 
+                    data={this.state.result} 
+                    paymentType={this.state.paymentType} 
+                    transactionID={this.state.transactionID}
+                    headerDetails={{
+                        logo: this.state.headerLogo,
+                        textColor: this.state.headerTextColor,
+                        backgroundColor: this.state.headerBackGroundColor
+                    }}
+                />
                 <Container maxWidth={"md"} style={{ marginBottom: "2%", padding: "8px" }} disableGutters>
                     <Typography style={{ textAlign: "start" }} variant="h6" gutterBottom></Typography>
                     <IFrameUrl

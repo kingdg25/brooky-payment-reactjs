@@ -135,7 +135,7 @@ export class CheckoutRepositoryImpl implements CheckoutRepository {
 
     async getERPNextDetails(code: string): Promise<any>{
         const dataRef = await db.collection("erpnext").doc(code).get()
-        return dataRef.data()
+        return dataRef.data() || {}
     }
 
     _checkoutsToMap (docRef: firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>): Checkout[] {
