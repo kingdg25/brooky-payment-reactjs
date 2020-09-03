@@ -32,7 +32,6 @@ class Header extends Component {
     componentDidMount() {
         this.updateWindowDimensions()
         window.addEventListener("resize", this.updateWindowDimensions)
-        console.log("Header Props",this.props)
     }
 
     componentWillUnmount() {

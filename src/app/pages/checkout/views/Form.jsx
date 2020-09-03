@@ -252,7 +252,7 @@ class Form extends Component {
             "message",
             async ev => {
                 if (ev.data === "3DS-authentication-complete") {
-                    console.log("3DS-authentication-complete")
+                    // console.log("3DS-authentication-complete")
                     const result = await this.props.paymentCreditIntent({
                         transactionID: this.state.transactionID,
                         intentID: this.state.intentID,
