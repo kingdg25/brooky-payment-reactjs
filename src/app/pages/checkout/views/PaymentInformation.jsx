@@ -212,9 +212,9 @@ class PaymentInformation extends Component {
                                     <TripOrigin />
                                 </ListItemIcon>
                                 <CardMedia image="/shipping_and_delivery.png" style={{ height: 40, width: 80 }} />
-                                <Box height="40px" component="span" m={1}>
-                                    <Typography align="center" variant="subtitle1" >Over-the-Counter / ATM Banking</Typography>
-                                </Box>
+                                {/* <Box height="40px" component="span" m={1}> */}
+                                    <Typography align="center" variant="h6" >Over-the-Counter / ATM Banking</Typography>
+                                {/* </Box> */}
                             </ListItem>
                             <ListItem button onClick={() => this.handleClick("OB")}>
                                 <ListItemIcon>
@@ -225,6 +225,17 @@ class PaymentInformation extends Component {
                                     <Typography align="center" variant="h6" >Online Banking</Typography>
                                 </Box>
                             </ListItem>
+                            {this.props.props.schoolCode === "duraville" ? <ListItem button onClick={() => {
+                                    this.handleClick("OtherPaymentOptions") //Other Payment Options
+                                }}>
+                                <ListItemIcon>
+                                    <TripOrigin />
+                                </ListItemIcon>
+                                <CardMedia image="/duraville.png" style={{ height: 30, width: 150 }} />
+                                <Box height="40px" component="span" m={1}>
+                                    <Typography align="center" variant="h6" >Bills Payments</Typography>
+                                </Box>
+                            </ListItem> : ""}
                         </List>
                         {/* <Card
                             style={{

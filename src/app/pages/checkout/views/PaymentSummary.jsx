@@ -18,6 +18,7 @@ const paymentDict = {
     RDP: "RD Pawnshop",
     OB: "Online Banking",
     OTCA: "Over-the-Counter / ATM Banking",
+    OtherPaymentOptions: "Over-the-Counter / Bill Payments"
 }
 
 const formatter = new Intl.NumberFormat("en-PH", {
@@ -198,6 +199,8 @@ class PaymentSummary extends Component {
                                                 ? formatter.format(Math.round((Number(this.props.props.amount)) * 0.045))
                                                 : this.props.props.paymentType === "7/11"
                                                 ? formatter.format(Math.round((Number(this.props.props.amount)) * 0.05 + 15))
+                                                : this.props.props.paymentType === "OtherPaymentOptions"
+                                                ? 0.0
                                                 : formatter.format(Math.round((Number(this.props.props.amount)) * 0.01 + 25))}
                                         </Typography>
                                     </Grid>
@@ -231,6 +234,8 @@ class PaymentSummary extends Component {
                                                 ? formatter.format(Math.round((Number(this.props.props.amount)) * 1.045))
                                                 : this.props.props.paymentType === "7/11"
                                                 ? formatter.format(Math.round((Number(this.props.props.amount)) * 1.05 + 15))
+                                                : this.props.props.paymentType === "OtherPaymentOptions"
+                                                ? formatter.format(Number(this.props.props.amount))
                                                 : formatter.format(Math.round((Number(this.props.props.amount)) * 1.01 + 25))}
                                         </Typography>
                                     </Grid>
@@ -254,6 +259,8 @@ class PaymentSummary extends Component {
                                 ? "*GCash - 4.5%"
                                 : this.props.props.paymentType === "7/11"
                                 ? "*7/11 - 5% + 15"
+                                : this.props.props.paymentType === "OtherPaymentOptions"
+                                ? ""
                                 : "*OTC - 1% + 25"}
                         </Typography>
                     </Grid>

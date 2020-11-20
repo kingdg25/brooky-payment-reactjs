@@ -76,26 +76,33 @@ class StudentOTC extends Component {
         this.setState({ dPayRequest: true })
         const isValidOTC = this.validateOTC()
         if (isValidOTC) {
-            await this.props.setTotalPayment({
-                transactionID: this.props.props.transactionID,
-                amountTotal: this.props.props.amount,
-                paymentType: "dragonPay",
-                outletId: this.state.outlet,
-            })
-            await this.props.setEmailAddress({
-                transactionID: this.props.props.transactionID,
-                email: this.state.dPayEmail,
-                mobileNo: this.state.mobileNo,
-            })
-            const OTCUrl = await this.props.paymentOTC({
-                dPayEmail: this.state.dPayEmail,
-                outletId: this.state.outlet,
-                transactionID: this.props.props.transactionID,
-            })
-            if (OTCUrl) {
-                window.location.href = OTCUrl
+            if (this.props.props.paymentType === "OtherPaymentOptions"){
+                this.props.props.handleOtherPaymentOption(
+                    this.state.dPayEmail,
+                    this.state.mobileNo
+                )
             } else {
-                this.props.props.handleDialogError("Alert", "Please try again after a few moments...")
+                await this.props.setTotalPayment({
+                    transactionID: this.props.props.transactionID,
+                    amountTotal: this.props.props.amount,
+                    paymentType: "dragonPay",
+                    outletId: this.state.outlet,
+                })
+                await this.props.setEmailAddress({
+                    transactionID: this.props.props.transactionID,
+                    email: this.state.dPayEmail,
+                    mobileNo: this.state.mobileNo,
+                })
+                const OTCUrl = await this.props.paymentOTC({
+                    dPayEmail: this.state.dPayEmail,
+                    outletId: this.state.outlet,
+                    transactionID: this.props.props.transactionID,
+                })
+                if (OTCUrl) {
+                    window.location.href = OTCUrl
+                } else {
+                    this.props.props.handleDialogError("Alert", "Please try again after a few moments...")
+                }
             }
         }
         this.setState({ dPayRequest: false })

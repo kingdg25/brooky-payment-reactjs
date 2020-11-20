@@ -107,7 +107,7 @@ class Summary extends Component {
 
     render() {
         const instruction =
-            // this.state.schoolCode === "DEMO" ? 
+            (this.state.schoolCode || "").toLowerCase() === "demo" ? 
             (
                 <iframe
                     title="Instruction"
@@ -118,16 +118,16 @@ class Summary extends Component {
                     {"Your browser doesn't support IFrame"}
                 </iframe>
             ) 
-            // : (
-            //     <iframe
-            //         title="Instruction"
-            //         width="100%"
-            //         height="600"
-            //         src={"https://gw.dragonpay.ph/Bank/GetEmailInstruction.aspx?refno=" + this.state.refno}
-            //     >
-            //         {"Your browser doesn't support IFrame"}
-            //     </iframe>
-            // )
+            : (
+                <iframe
+                    title="Instruction"
+                    width="100%"
+                    height="600"
+                    src={"https://gw.dragonpay.ph/Bank/GetEmailInstruction.aspx?refno=" + this.state.refno}
+                >
+                    {"Your browser doesn't support IFrame"}
+                </iframe>
+            )
         const dPayInstruction =
             this.state.paymentType === "dragonPay" ? (
                 <div>

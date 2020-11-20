@@ -14,6 +14,7 @@ import {
     getERPNextDetails
 } from "../../checkout/Checkout.action"
 import { Fallback } from './fallback/fallback'
+import Duraville from './other_payment_options/duraville'
 import firebase from "firebase/app"
 import PropTypes from "prop-types"
 import queryString from "query-string"
@@ -77,7 +78,8 @@ const initialState = {
     skipRoute: "",
     headerLogo: "brooky-logo.png",
     headerTextColor: "white",
-    headerBackGroundColor: "#2680EB"
+    headerBackGroundColor: "#2680EB",
+    has_other_option: false
 }
 
 class Form extends Component {
@@ -99,6 +101,15 @@ class Form extends Component {
         this.handleDialogError = this.handleDialogError.bind(this)
         this.handleIFrame = this.handleIFrame.bind(this)
         this.handleIntentID = this.handleIntentID.bind(this)
+        this.handleOtherPaymentOption = this.handleOtherPaymentOption.bind(this)
+    }
+
+    handleOtherPaymentOption(email, phone){
+        this.setState({
+            has_other_option: true,
+            email: email || this.state.email,
+            mobileNo: phone || this.state.mobileNo
+        })
     }
 
     handleIntentID(ID) {
@@ -203,7 +214,7 @@ class Form extends Component {
                                     // lastName: result.lastName,
                                     // firstName: result.firstName,
                                     description: result.description,
-                                    schoolCode: `${result.client_code}`.toLowerCase,
+                                    schoolCode: `${result.client_code}`.toLowerCase(),
                                     email: result.buyers_email || "",
                                     mobileNo: result.buyers_mobile_number || "",
                                     skipRoute: result.skip_route,
@@ -351,26 +362,35 @@ class Form extends Component {
                         creditCVVErr={this.state.creditCVVErr}
                         handleCloseEWalletError={this.handleCloseEWalletError}
                     />
-                    <StudentPaymentMethod
-                        paymentType={this.state.paymentType}
-                        handlePaymentChange={this.handlePaymentChange}
-                        handleBackDropToggle={this.handleBackDropToggle}
-                        transactionID={this.state.transactionID}
-                        handleDialogError={this.handleDialogError}
-                        handleIFrame={this.handleIFrame}
-                        handleIntentID={this.handleIntentID}
-                        handleCloseBackDrop={this.handleCloseBackDrop}
-                        note={this.state.note}
-                        amount={this.state.amount}
-                        history={this.props.history}
-                        firstName={this.state.firstName}
-                        lastName={this.state.lastName}
-                        description={this.state.description}
-                        schoolCode={this.state.schoolCode}
-                        email={this.state.email}
-                        mobileNo={this.state.mobileNo}
-                        skipRoute={this.state.skipRoute}
-                    />
+                    {
+                        (this.state.has_other_option && this.state.schoolCode === "duraville") ?
+                            <Duraville
+                                {...this.props}
+                                email={this.state.email}
+                                mobileNo={this.state.mobileNo}
+                            /> :
+                            <StudentPaymentMethod
+                                paymentType={this.state.paymentType}
+                                handlePaymentChange={this.handlePaymentChange}
+                                handleBackDropToggle={this.handleBackDropToggle}
+                                transactionID={this.state.transactionID}
+                                handleDialogError={this.handleDialogError}
+                                handleIFrame={this.handleIFrame}
+                                handleIntentID={this.handleIntentID}
+                                handleCloseBackDrop={this.handleCloseBackDrop}
+                                note={this.state.note}
+                                amount={this.state.amount}
+                                history={this.props.history}
+                                firstName={this.state.firstName}
+                                lastName={this.state.lastName}
+                                description={this.state.description}
+                                schoolCode={this.state.schoolCode}
+                                email={this.state.email}
+                                mobileNo={this.state.mobileNo}
+                                skipRoute={this.state.skipRoute}
+                                handleOtherPaymentOption={this.handleOtherPaymentOption}
+                            />
+                    }
                     {/*{paymentType}*/}
                     <br />
                     <br />
