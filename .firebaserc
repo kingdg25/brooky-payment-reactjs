@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "brooky-f041f"
+  },
+  "targets": {
+    "brooky-f041f": {
+      "hosting": {
+        "brooky-payment": [
+          "brooky-f041f"
+        ]
+      }
+    }
   }
 }
