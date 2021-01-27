@@ -79,7 +79,9 @@ const initialState = {
     headerLogo: "brooky-logo.png",
     headerTextColor: "white",
     headerBackGroundColor: "#2680EB",
-    has_other_option: false
+    has_other_option: false,
+    enable_type1: true,
+    enable_type2: true
 }
 
 class Form extends Component {
@@ -222,7 +224,10 @@ class Form extends Component {
 
                                     headerLogo: erpnext_details.paymentHeaderLogo || this.state.headerLogo,
                                     headerTextColor: erpnext_details.paymentHeaderTextColor || this.state.headerTextColor,
-                                    headerBackGroundColor: erpnext_details.paymentHeaderBackGroundColor || this.state.headerBackGroundColor
+                                    headerBackGroundColor: erpnext_details.paymentHeaderBackGroundColor || this.state.headerBackGroundColor,
+
+                                    enable_type1: (typeof result.enable_type1)==="boolean" ? result.enable_type1 : true,
+                                    enable_type2: (typeof result.enable_type2)==="boolean" ? result.enable_type2 : true
                                 })
                             } else {
                                 this.setState({ result: undefined })
@@ -389,6 +394,8 @@ class Form extends Component {
                                 mobileNo={this.state.mobileNo}
                                 skipRoute={this.state.skipRoute}
                                 handleOtherPaymentOption={this.handleOtherPaymentOption}
+                                enable_type1={this.state.enable_type1}
+                                enable_type2={this.state.enable_type2}
                             />
                     }
                     {/*{paymentType}*/}

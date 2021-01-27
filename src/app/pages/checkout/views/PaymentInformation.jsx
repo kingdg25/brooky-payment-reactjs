@@ -63,6 +63,7 @@ class PaymentInformation extends Component {
 
     render() {
         // console.log(this.props)
+        console.log("ENABLE TYPE: ",this.props.props)
         const { classes } = this.props
         const skipPayments = this.props.props.skipRoute ? (
             <Grid item xs={12}>
@@ -191,7 +192,8 @@ class PaymentInformation extends Component {
                     <Grid item xs={12}>
                     <Container maxWidth="xs" disableGutters>
                         <List component="nav" aria-label="mailbox folders">
-                            <ListItem button onClick={() => this.handleClick("credit")} >
+                            {this.props.props.enable_type1 ?
+                            (<div><ListItem button onClick={() => this.handleClick("credit")} >
                                 <ListItemIcon>
                                     <TripOrigin />
                                 </ListItemIcon>
@@ -207,15 +209,6 @@ class PaymentInformation extends Component {
                                     <CardMedia image="/gcash_full.png" style={{ height: 40, width: 150 }} />
                                 </Box>
                             </ListItem>
-                            <ListItem button onClick={() => this.handleClick("OTCA")}>
-                                <ListItemIcon>
-                                    <TripOrigin />
-                                </ListItemIcon>
-                                <CardMedia image="/shipping_and_delivery.png" style={{ height: 40, width: 80 }} />
-                                {/* <Box height="40px" component="span" m={1}> */}
-                                    <Typography align="center" variant="h6" >Over-the-Counter / ATM Banking</Typography>
-                                {/* </Box> */}
-                            </ListItem>
                             <ListItem button onClick={() => this.handleClick("OB")}>
                                 <ListItemIcon>
                                     <TripOrigin />
@@ -224,18 +217,32 @@ class PaymentInformation extends Component {
                                 <Box height="40px" component="span" m={1}>
                                     <Typography align="center" variant="h6" >Online Banking</Typography>
                                 </Box>
-                            </ListItem>
-                            {this.props.props.schoolCode === "duraville" ? <ListItem button onClick={() => {
-                                    this.handleClick("OtherPaymentOptions") //Other Payment Options
-                                }}>
+                            </ListItem></div>) : <div></div>
+                            }
+                            { this.props.props.enable_type2 ?
+                            <div>
+                                <ListItem button onClick={() => this.handleClick("OTCA")}>
                                 <ListItemIcon>
                                     <TripOrigin />
                                 </ListItemIcon>
-                                <CardMedia image="/duraville.png" style={{ height: 30, width: 150 }} />
-                                <Box height="40px" component="span" m={1}>
-                                    <Typography align="center" variant="h6" >Bills Payments</Typography>
-                                </Box>
-                            </ListItem> : ""}
+                                <CardMedia image="/shipping_and_delivery.png" style={{ height: 40, width: 80 }} />
+                                {/* <Box height="40px" component="span" m={1}> */}
+                                    <Typography align="center" variant="h6" >Over-the-Counter / ATM Banking</Typography>
+                                {/* </Box> */}
+                                </ListItem>
+                                {this.props.props.schoolCode === "duraville" ? <ListItem button onClick={() => {
+                                        this.handleClick("OtherPaymentOptions") //Other Payment Options
+                                    }}>
+                                    <ListItemIcon>
+                                        <TripOrigin />
+                                    </ListItemIcon>
+                                    <CardMedia image="/duraville.png" style={{ height: 30, width: 150 }} />
+                                    <Box height="40px" component="span" m={1}>
+                                        <Typography align="center" variant="h6" >Bills Payments</Typography>
+                                    </Box>
+                                </ListItem> : ""}
+                            </div> : <div></div>
+                            }
                         </List>
                         {/* <Card
                             style={{
