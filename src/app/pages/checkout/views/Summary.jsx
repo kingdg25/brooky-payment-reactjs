@@ -107,7 +107,8 @@ class Summary extends Component {
 
     render() {
         const instruction =
-            (this.state.schoolCode || "").toLowerCase() === "demo" ? 
+            ((this.state.schoolCode || "").toLowerCase() === "demo" || (this.state.schoolCode || "").toLowerCase().trim().includes("staging") || 
+            (this.state.schoolCode || "").toLowerCase() === "") ? 
             (
                 <iframe
                     title="Instruction"
