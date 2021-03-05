@@ -9,6 +9,8 @@ import {
 } from '@material-ui/core'
 import { withStyles } from '@material-ui/core'
 
+import isURL from 'validator/lib/isURL'
+
 const paymentDict = {
     credit: "Credit/Debit Card",
     gcash: "GCash",
@@ -70,7 +72,7 @@ class Header extends Component {
                                     <Grid item md={12} justify="flex-start" alignItems="center" container>
                                         <Typography style={{ textAlign: "start" }} variant="h5" gutterBottom>
                                             <img
-                                                src={`/${this.props.headerDetails.logo}`}
+                                                src={!isURL(this.props.headerDetails.logo) ? `/${this.props.headerDetails.logo}` : `${this.props.headerDetails.logo}`}
                                                 alt="Brooky Logo"
                                                 style={{maxHeight: "28px", marginTop: "24px" }}
                                                 // style={{ height: "100px", width: "250px", marginTop: "24px" }}
