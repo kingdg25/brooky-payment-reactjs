@@ -140,3 +140,10 @@ export class ERPNextDetails {
         this.details = details
     }
 }
+
+export class PaymentGatewayDetails {
+    details: object
+    constructor(details: object){
+        this.details = details
+    }
+}

@@ -8,6 +8,14 @@ import {
     Divider
 } from '@material-ui/core'
 import { withStyles } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 
 import isURL from 'validator/lib/isURL'
 
@@ -261,108 +269,40 @@ class Header extends Component {
                                     </Grid>
                                 </Grid>
                             </Grid>
-                            {/* <Grid
-                                container
-                                direction="row"
-                                justify="center"
-                                alignItems="center"
-                                style={{ backgroundColor: "white", color: "black" }}
-                            >
-                                <Grid item xs={2}>
-                                    <Typography
-                                        style={{ textAlign: "start", color: "lightslategray" }}
-                                        variant="subtitle2"
-                                        gutterBottom
-                                    >
-                                        {this.state.width > 630 ? "Refrence Number" : "Ref. No."}
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={7}>
-                                    <Typography
-                                        style={{
-                                            textAlign: window.innerWidth > 450 ? "start" : "center",
-                                            color: "#2680EB",
-                                            fontWeight: "bold",
-                                        }}
-                                        variant="subtitle2"
-                                        gutterBottom
-                                    >
-                                        {this.props.transactionID}
-                                    </Typography>
-                                </Grid>
-                                <Grid
-                                    item
-                                    xs={3}
-                                    style={{
-                                        textAlign: "end",
-                                    }}
-                                >
-                                    <Typography
-                                        style={{
-                                            textAlign: window.innerWidth > 450 ? "end" : "center",
-                                            color: "black",
-                                            // border: "1px solid blue",
-                                            // maxWidth: "max-content",
-                                            // borderRadius: "5px 5px 5px 5px",
-                                        }}
-                                        variant="subtitle2"
-                                        gutterBottom
-                                    >
-                                        {paymentDict[this.props.paymentType]}
-                                    </Typography>
-                                </Grid>
-                            </Grid>
-                            <Grid
-                                container
-                                direction="row"
-                                justify="center"
-                                alignItems="center"
-                                style={{ backgroundColor: "white", color: "black" }}
-                            >
-                                <Grid item xs={2}>
-                                    <Typography
-                                        style={{ textAlign: "start", color: "lightslategray" }}
-                                        variant="subtitle2"
-                                        gutterBottom
-                                    >
-                                        Document ID:
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={7}>
-                                    <Typography
-                                        style={{
-                                            textAlign: window.innerWidth > 450 ? "start" : "center",
-                                            color: "#2680EB",
-                                            fontWeight: "bold",
-                                        }}
-                                        variant="subtitle2"
-                                        gutterBottom
-                                    >
-                                        {this.props.data.doc_reference || ""}
-                                    </Typography>
-                                </Grid>
-                                <Grid
-                                    item
-                                    xs={3}
-                                    style={{
-                                        textAlign: "end",
-                                    }}
-                                >
-                                    <Typography
-                                        style={{
-                                            textAlign: window.innerWidth > 450 ? "end" : "center",
-                                            color: "black",
-                                            // border: "1px solid blue",
-                                            // maxWidth: "max-content",
-                                            // borderRadius: "5px 5px 5px 5px",
-                                        }}
-                                        variant="subtitle2"
-                                        gutterBottom
-                                    >
-                                    </Typography>
-                                </Grid>
-                            </Grid> */}
                         </Grid>
+
+                        {/* <Grid item md={12} spacing={2} direction="row" container>
+                            <TableContainer component={Paper}>
+                            <Table elevation={0} aria-label="simple table">
+                                <TableHead>
+                                <TableRow>
+                                    <TableCell><b>Project</b></TableCell>
+                                    <TableCell align="right"><b>Phase/Tower</b></TableCell>
+                                    <TableCell align="right"><b>Block/Floor</b></TableCell>
+                                    <TableCell align="right"><b>Lot</b></TableCell>
+                                </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    <TableRow key={1}>
+                                        <TableCell component="th" scope="row">
+                                            <b>Royale Homes Batangas</b>
+                                        </TableCell>
+                                        <TableCell align="left">1</TableCell>
+                                        <TableCell align="left">2</TableCell>
+                                        <TableCell align="left">3</TableCell>
+                                    </TableRow>
+                                    <TableRow key={2}>
+                                        <TableCell component="th" scope="row">
+                                            <b>Royale Homes Batangas</b>
+                                        </TableCell>
+                                        <TableCell align="left">1</TableCell>
+                                        <TableCell align="left">2</TableCell>
+                                        <TableCell align="left">4</TableCell>
+                                    </TableRow>
+                                </TableBody>
+                            </Table>
+                            </TableContainer>
+                        </Grid> */}
                     </Container>
                 </Grid>
             </div>

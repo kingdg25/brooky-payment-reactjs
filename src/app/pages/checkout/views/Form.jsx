@@ -11,7 +11,8 @@ import {
     paymentOTC,
     paymentCreditIntent,
     getFirebaseAuth,
-    getERPNextDetails
+    getERPNextDetails,
+    getPaymentGatewayDetails
 } from "../../checkout/Checkout.action"
 import { Fallback } from './fallback/fallback'
 import Duraville from './other_payment_options/duraville'
@@ -81,7 +82,8 @@ const initialState = {
     headerBackGroundColor: "#2680EB",
     has_other_option: false,
     enable_type1: true,
-    enable_type2: true
+    enable_type2: true,
+    units: []
 }
 
 class Form extends Component {
@@ -208,6 +210,8 @@ class Form extends Component {
                             if (result.paid !== "Success" && result.paid !== "Expired") {
 
                                 const erpnext_details = await this.props.getERPNextDetails(result.client_code)
+                                const payment_gateway_details = await this.props.getPaymentGatewayDetails("paymongo")
+                                console.log("paymongo wew  payment_gateway_details", payment_gateway_details)
 
                                 this.setState({
                                     result: result,
@@ -227,7 +231,9 @@ class Form extends Component {
                                     headerBackGroundColor: erpnext_details.paymentHeaderBackGroundColor || this.state.headerBackGroundColor,
 
                                     enable_type1: (typeof result.enable_type1)==="boolean" ? result.enable_type1 : true,
-                                    enable_type2: (typeof result.enable_type2)==="boolean" ? result.enable_type2 : true
+                                    enable_type2: (typeof result.enable_type2)==="boolean" ? result.enable_type2 : true,
+
+                                    units: result.units || []
                                 })
                             } else {
                                 this.setState({ result: undefined })
@@ -420,7 +426,8 @@ const mapDispatchToProps = dispatch => ({
     getTransactionID: () => dispatch(getTransactionID()),
     paymentCreditIntent: data => dispatch(paymentCreditIntent(data)),
     getFirebaseAuth: data => dispatch(getFirebaseAuth(data)),
-    getERPNextDetails: data => dispatch(getERPNextDetails(data))
+    getERPNextDetails: data => dispatch(getERPNextDetails(data)),
+    getPaymentGatewayDetails: data => dispatch(getPaymentGatewayDetails(data))
 })
 
 Form.propTypes = {
@@ -437,7 +444,8 @@ Form.propTypes = {
     paymentCreditIntent: PropTypes.func,
     match: PropTypes.object,
     getFirebaseAuth: PropTypes.func,
-    getERPNextDetails: PropTypes.func
+    getERPNextDetails: PropTypes.func,
+    getPaymentGatewayDetails: PropTypes.func
 }
 
 export default connect(null, mapDispatchToProps)(Form)

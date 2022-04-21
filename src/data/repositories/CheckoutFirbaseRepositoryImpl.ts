@@ -138,6 +138,11 @@ export class CheckoutRepositoryImpl implements CheckoutRepository {
         return dataRef.data() || {}
     }
 
+    async getPaymentGatewayDetails(id: string): Promise<any>{
+        const dataRef = await db.collection("payment_gateways").doc(id).get()
+        return dataRef.data() || {}
+    }
+
     _checkoutsToMap (docRef: firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>): Checkout[] {
         const checkouts: any = []
         docRef.forEach( doc => {
