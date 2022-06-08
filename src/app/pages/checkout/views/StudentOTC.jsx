@@ -87,6 +87,7 @@ class StudentOTC extends Component {
                     amountTotal: this.props.props.amount,
                     paymentType: "dragonPay",
                     outletId: this.state.outlet,
+                    clientCode: this.props.props.schoolCode
                 })
                 await this.props.setEmailAddress({
                     transactionID: this.props.props.transactionID,

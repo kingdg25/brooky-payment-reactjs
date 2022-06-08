@@ -346,7 +346,7 @@ class Summary extends Component {
                                             style={{ textAlign: "end", fontWeight: "bold" }}
                                             gutterBottom
                                         >
-                                            {this.state.outletId === "credit"
+                                            {(this.state.schoolCode || "").includes("hankyu") ? formatter.format(Math.round((Number(this.state.amount)))) : this.state.outletId === "credit"
                                                 ? formatter.format(Math.round((Number(this.state.amount)) * 1.048 + 15))
                                                 : this.state.outletId === "gcash"
                                                 ? formatter.format(Math.round((Number(this.state.amount)) * 1.045))

@@ -40,7 +40,8 @@ class StudentGCash extends Component {
             transactionID: this.props.props.transactionID,
             amountTotal: this.props.props.amount,
             paymentType: "paymongo",
-            outletId: "gcash"
+            outletId: "gcash",
+            clientCode: this.props.props.schoolCode
         })
         const res = await this.props.paymentGCash({
             schoolCode: this.props.props.schoolCode,

@@ -64,6 +64,14 @@ export class CheckoutServiceImpl {
     async setTotalPayment(data: TotalPayment) {
         console.log(data.outletId)
         const initialVal = data.amountTotal
+        
+        if ((data.clientCode || "").includes("hankyu")) {
+            data.amountTotal = Math.round(data.amountTotal)
+            data.amountGateway = 0.0
+            data.amountBrooky = Math.round(data.amountTotal - initialVal - data.amountGateway)
+            this.checkoutRepo.setTotalPayment(data)
+            return;
+        }
          if (data.paymentType === "paymongo"){
             if (data.outletId === "credit") {
                 data.amountTotal = Math.round(data.amountTotal * 1.048 + 15)

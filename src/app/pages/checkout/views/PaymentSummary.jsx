@@ -147,6 +147,8 @@ class PaymentSummary extends Component {
                                         </Typography>
                                     </Grid>
                                 </Grid>
+
+                                {(this.props.props.schoolCode || "").includes("hankyu") ? <div></div> : 
                                 <Grid
                                     container
                                     spacing={0}
@@ -173,8 +175,9 @@ class PaymentSummary extends Component {
                                             {formatter.format(this.props.props.amount)}
                                         </Typography>
                                     </Grid>
-                                </Grid>
-                                <Grid
+                                </Grid>}
+
+                                {(this.props.props.schoolCode || "").includes("hankyu") ? <div></div> : <Grid
                                     container
                                     spacing={0}
                                     direction="row"
@@ -204,7 +207,8 @@ class PaymentSummary extends Component {
                                                 : formatter.format(Math.round((Number(this.props.props.amount)) * 0.01 + 25))}
                                         </Typography>
                                     </Grid>
-                                </Grid>
+                                </Grid>}
+                                
                                 <Grid
                                     container
                                     spacing={0}
@@ -228,7 +232,7 @@ class PaymentSummary extends Component {
                                             variant="subtitle1"
                                             gutterBottom
                                         >
-                                            {this.props.props.paymentType === "credit"
+                                            {(this.props.props.schoolCode || "").includes("hankyu") ? formatter.format(Math.round((Number(this.props.props.amount)))) : this.props.props.paymentType === "credit"
                                                 ? formatter.format(Math.round((Number(this.props.props.amount)) * 1.048 + 15))
                                                 : this.props.props.paymentType === "gcash"
                                                 ? formatter.format(Math.round((Number(this.props.props.amount)) * 1.045))
@@ -253,7 +257,7 @@ class PaymentSummary extends Component {
                     </Grid>
                     <Grid item xs={12} style={{ textAlign: "start", padding: "0px" }}>
                         <Typography style={{ textAlign: "start" }} variant="caption" gutterBottom>
-                            {this.props.props.paymentType === "credit"
+                            {(this.props.props.schoolCode || "").includes("hankyu") ? <div></div> : this.props.props.paymentType === "credit"
                                 ? "*Credit/Debit Card - 4.8% + 15"
                                 : this.props.props.paymentType === "gcash"
                                 ? "*GCash - 4.5%"

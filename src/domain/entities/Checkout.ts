@@ -98,6 +98,7 @@ export class TotalPayment {
     paymentType: string
     transactionID: string
     outletId: string
+    clientCode: string | undefined | null
     constructor(
         amountTotal: number,
         paymentType: string,
@@ -105,6 +106,7 @@ export class TotalPayment {
         amountWela: number,
         amountGateway: number,
         outletId: string,
+        clientCode: string | undefined | null
     ) {
         this.amountTotal = amountTotal
         this.amountBrooky = amountWela
@@ -112,6 +114,7 @@ export class TotalPayment {
         this.paymentType = paymentType
         this.transactionID = transactionID
         this.outletId = outletId
+        this.clientCode = clientCode
     }
 }
 
