@@ -12,7 +12,8 @@ import {
     paymentCreditIntent,
     getFirebaseAuth,
     getERPNextDetails,
-    getPaymentGatewayDetails
+    getPaymentGatewayDetails,
+    chargeCredit
 } from "../../checkout/Checkout.action"
 import { Fallback } from './fallback/fallback'
 import Duraville from './other_payment_options/duraville'
@@ -28,6 +29,8 @@ import DialogMsg from "./DialogMsg"
 import Header from "./Header"
 import IFrameUrl from "./IFrameUrl"
 import Typography from "@material-ui/core/Typography"
+
+import {chargeFailureCodes} from './StudentCreditCard'
 
 const initialState = {
     user: "",
@@ -298,6 +301,51 @@ class Form extends Component {
                         })
                     }
                 }
+                
+                if (ev.origin==="https://redirect.xendit.co") {
+
+                    this.handleBackDropToggle()
+                    if (ev.data) {
+                        const xenditData = JSON.parse(ev.data)
+                        console.log(xenditData)
+                        this.setState({IFrame: false })
+                        await this.props.localStorageSetItems({
+                            transactionID: this.state.transactionID,
+                            paymentType: this.state.paymentType,
+                            amount: this.state.amount,
+                        })
+                        console.log("TODO: charge credit card , send data to cloud functions API")
+
+                        // TODO: charge credit card , send data to cloud functions API
+
+                        const data = xenditData;
+                        data.transaction_id = this.state.transactionID
+                        const charge = await this.props.chargeCredit(data);
+                        console.log("WEWEWEW", charge)
+                        if (charge.data) {
+                            if (charge.data.status==="FAILED") {
+                                this.handleDialogError(
+                                    chargeFailureCodes[charge.data.failure_reason] || charge.data.failure_reason,
+                                    charge.data.failure_reason,
+                                )
+                                this.setState({
+                                    IFrame: false,
+                                    dialogStatus: true,
+                                    backDrop: false,
+                                    statusTitle: "Alert",
+                                    statusMessage: chargeFailureCodes[charge.data.failure_reason] || charge.data.failure_reason,
+                                })
+                            } else if (charge.data.status==="CAPTURED") {
+                                this.props.history.push("/Summary/" + this.state.transactionID)
+                            }
+                        }
+                        this.handleCloseBackDrop()
+
+
+                        
+                    }
+                }
+
             },
             false,
         )
@@ -427,7 +475,8 @@ const mapDispatchToProps = dispatch => ({
     paymentCreditIntent: data => dispatch(paymentCreditIntent(data)),
     getFirebaseAuth: data => dispatch(getFirebaseAuth(data)),
     getERPNextDetails: data => dispatch(getERPNextDetails(data)),
-    getPaymentGatewayDetails: data => dispatch(getPaymentGatewayDetails(data))
+    getPaymentGatewayDetails: data => dispatch(getPaymentGatewayDetails(data)),
+    chargeCredit: data => dispatch(chargeCredit(data))
 })
 
 Form.propTypes = {

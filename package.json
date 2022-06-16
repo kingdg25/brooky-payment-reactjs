@@ -24,7 +24,9 @@
     "redux-thunk": "^2.3.0",
     "sha1": "^1.1.1",
     "typescript": "^3.8.3",
-    "validator": "^13.5.2"
+    "validator": "^13.7.0",
+    "xendit-js-node": "^1.1.2",
+    "xendit-node": "^1.21.3"
   },
   "scripts": {
     "start": "react-scripts start",

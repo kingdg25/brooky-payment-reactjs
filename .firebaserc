@@ -7,6 +7,9 @@
       "hosting": {
         "brooky-payment": [
           "brooky-f041f"
+        ],
+        "brooky-payment-staging": [
+          "brooky-payment-staging"
         ]
       }
     }

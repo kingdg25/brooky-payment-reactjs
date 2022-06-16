@@ -12,7 +12,8 @@ import {
     EmailAddress,
     CardNumber,
     ERPNextDetails,
-    PaymentGatewayDetails
+    PaymentGatewayDetails,
+    ChargeDetails
 } from "../entities/Checkout"
 
 export interface CheckoutRepository {
@@ -30,4 +31,6 @@ export interface CheckoutRepository {
     checkCard(data: CardNumber): Promise<PaymentReturn>
     getERPNextDetails(code: string): Promise<ERPNextDetails>
     getPaymentGatewayDetails(id: string): Promise<PaymentGatewayDetails>
+    chargeCredit(data: object): Promise<ChargeDetails>
+    chargeEWallet(data: object): Promise<any>
 }

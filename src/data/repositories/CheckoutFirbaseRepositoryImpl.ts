@@ -12,6 +12,7 @@ import {
     EmailAddress,
     CardNumber,
     ERPNextDetails,
+    ChargeDetails
 } from "../../domain/entities/Checkout"
 import { CheckoutRepository } from "../../domain/repositories/CheckoutRepository"
 import { firebaseApp } from "../common/firestore"
@@ -100,6 +101,7 @@ export class CheckoutRepositoryImpl implements CheckoutRepository {
             paymentType: data.paymentType,
             outletId: data.outletId
         })
+        return data
     }
 
     async getCheckoutData(data: TransactionID): Promise<Checkout> {
@@ -141,6 +143,17 @@ export class CheckoutRepositoryImpl implements CheckoutRepository {
     async getPaymentGatewayDetails(id: string): Promise<any>{
         const dataRef = await db.collection("payment_gateways").doc(id).get()
         return dataRef.data() || {}
+    }
+
+    async chargeCredit(data: object): Promise<ChargeDetails> {
+        const addMessage = firebase.functions().httpsCallable("xendit-createCharge")
+        const result = await addMessage(data)
+        return result;
+    }
+    async chargeEWallet(data: object): Promise<any> {
+        const addMessage = firebase.functions().httpsCallable("xendit-createChargeEWallet")
+        const result = await addMessage(data)
+        return result;
     }
 
     _checkoutsToMap (docRef: firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>): Checkout[] {

@@ -6,8 +6,20 @@ import Typography from "@material-ui/core/Typography"
 import Button from "@material-ui/core/Button"
 import CircularProgress from "@material-ui/core/CircularProgress"
 import { connect } from "react-redux"
-import { paymentGCash, setGCashSourceID, localStorageSetItems, setTotalPayment } from "../Checkout.action"
+import { paymentGCash, setGCashSourceID, localStorageSetItems, setTotalPayment, chargeEWallet } from "../Checkout.action"
 import { withStyles } from "@material-ui/core/styles"
+
+
+const xenditEWalletChannels = {
+    "gcash": "PH_GCASH",
+    "paymaya": "PH_PAYMAYA"
+}
+
+const xenditChargeErrorCodes = {
+    "CHANNEL_NOT_ACTIVATED": "eWallet payment channel hasn't been activated.",
+    "CHANNEL_UNAVAILABLE": "eWallet provider service is unavailable",
+    "SERVER_ERROR": "Xendit service is experiencing unexpected errors."
+}
 
 const ColorButton = withStyles(theme => ({
     root: {
@@ -34,7 +46,7 @@ class StudentGCash extends Component {
         event.preventDefault()
     }
 
-    async componentDidMount() {
+    async componentDidMount_V1() {
         this.setState({ gcashRequest: true })
         await this.props.setTotalPayment({
             transactionID: this.props.props.transactionID,
@@ -56,6 +68,39 @@ class StudentGCash extends Component {
             amount: this.props.props.amount,
         })
         window.location.href = res.data.data.attributes.redirect.checkout_url
+    }
+
+    async componentDidMount() {
+        this.setState({ gcashRequest: true })
+        await this.props.setTotalPayment({
+            transactionID: this.props.props.transactionID,
+            amountTotal: this.props.props.amount,
+            paymentType: "xendit",
+            outletId: this.props.props.paymentType,
+            clientCode: this.props.props.schoolCode
+        })
+        
+        const charge = await this.props.chargeEWallet({
+            // channel_code: this.props.props.paymentType==="gcash" ? "PH_GCASH" : "PH_PAYMAYA",
+            channel_code: xenditEWalletChannels[this.props.props.paymentType],
+            transaction_id: this.props.props.transactionID,
+        })
+        
+        if (charge.data) {
+            if (charge.data.error) {
+                this.props.props.handleDialogError(
+                    xenditChargeErrorCodes[charge.data.error.code] || charge.data.error.code,
+                    charge.data.error.message,
+                )
+            } else {
+                if (charge.data.status==="PENDING") {
+                    window.location.href = charge.data.actions.desktop_web_checkout_url
+                }
+            }
+        }
+        
+        this.setState({ gcashRequest: false })
+        
     }
 
     render() {
@@ -147,6 +192,7 @@ const mapDispatchToProps = dispatch => ({
     setGCashSourceID: data => dispatch(setGCashSourceID(data)),
     localStorageSetItems: data => dispatch(localStorageSetItems(data)),
     setTotalPayment: data => dispatch(setTotalPayment(data)),
+    chargeEWallet: data => dispatch(chargeEWallet(data)),
 })
 
 StudentGCash.propTypes = {

@@ -13,6 +13,7 @@ import {
     CardNumber,
     ERPNextDetails,
     PaymentGatewayDetails,
+    ChargeDetails
 } from "../entities/Checkout"
 import { CheckoutRepository } from "../repositories/CheckoutRepository"
 
@@ -70,7 +71,7 @@ export class CheckoutServiceImpl {
             data.amountGateway = 0.0
             data.amountBrooky = Math.round(data.amountTotal - initialVal - data.amountGateway)
             this.checkoutRepo.setTotalPayment(data)
-            return;
+            return data;
         }
          if (data.paymentType === "paymongo"){
             if (data.outletId === "credit") {
@@ -88,9 +89,17 @@ export class CheckoutServiceImpl {
                 data.amountTotal = Math.round(data.amountTotal * 1.01 + 25)
                 data.amountGateway = 20
             }
-        }
+        } else if (data.paymentType === "xendit"){
+            if (data.outletId === "credit") {
+                data.amountTotal = Math.round(data.amountTotal * 1.048 + 15)
+                data.amountGateway = Math.round(data.amountTotal * 0.035 + 15)
+            } else if (data.outletId === "gcash") {
+                data.amountTotal = Math.round(data.amountTotal * 1.045)
+                data.amountGateway = Math.round(data.amountTotal * 0.029)
+            }
+         }
         data.amountBrooky = Math.round(data.amountTotal - initialVal - data.amountGateway)
-        this.checkoutRepo.setTotalPayment(data)
+        return this.checkoutRepo.setTotalPayment(data)
     }
 
     async getCheckoutData(data: TransactionID): Promise<Checkout> {
@@ -116,5 +125,12 @@ export class CheckoutServiceImpl {
     }
     async getPaymentGatewayDetails(id: string): Promise<PaymentGatewayDetails>{
         return this.checkoutRepo.getPaymentGatewayDetails(id)
+    }
+
+    async chargeCredit(data: object): Promise<ChargeDetails>{
+        return this.checkoutRepo.chargeCredit(data)
+    }
+    async chargeCreditEWallet(data: object): Promise<ChargeDetails>{
+        return this.checkoutRepo.chargeEWallet(data)
     }
 }

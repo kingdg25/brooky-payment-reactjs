@@ -144,8 +144,8 @@ export const setTotalPayment = data => {
         try {
             const checkoutRepo = new CheckoutRepositoryImpl()
             const checkoutService = new CheckoutServiceImpl(checkoutRepo)
-            await checkoutService.setTotalPayment(data)
             dispatch({ type: types.SET_AMOUNT_TOTAL_SUCCESS })
+            return await checkoutService.setTotalPayment(data)
         } catch (error) {
             dispatch({ type: types.SET_AMOUNT_TOTAL_ERROR, error })
         }
@@ -219,6 +219,36 @@ export const getPaymentGatewayDetails = data => {
             const items = await checkoutService.getPaymentGatewayDetails(data)
             dispatch({ type: types.GET_DATA_SUCCESS })
             return items
+        } catch (error) {
+            dispatch({ type: types.GET_DATA_ERROR, error })
+        }
+    }
+}
+
+export const chargeCredit = data => {
+    return async dispatch => {
+        dispatch({ type: types.GET_DATA_REQUEST })
+        try {
+            const checkoutRepo = new CheckoutRepositoryImpl()
+            const checkoutService = new CheckoutServiceImpl(checkoutRepo)
+            const _data = await checkoutService.chargeCredit(data)
+            dispatch({ type: types.GET_DATA_SUCCESS })
+            return _data
+        } catch (error) {
+            dispatch({ type: types.GET_DATA_ERROR, error })
+        }
+    }
+}
+
+export const chargeEWallet = data => {
+    return async dispatch => {
+        dispatch({ type: types.GET_DATA_REQUEST })
+        try {
+            const checkoutRepo = new CheckoutRepositoryImpl()
+            const checkoutService = new CheckoutServiceImpl(checkoutRepo)
+            const _data = await checkoutService.chargeCreditEWallet(data)
+            dispatch({ type: types.GET_DATA_SUCCESS })
+            return _data
         } catch (error) {
             dispatch({ type: types.GET_DATA_ERROR, error })
         }

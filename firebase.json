@@ -17,6 +17,24 @@
       "headers": [
         { "source":"/service-worker.js", "headers": [{"key": "Cache-Control", "value": "no-cache"}] }
       ]
+    },
+    {
+      "target": "brooky-payment-staging",
+      "public": "build",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "headers": [
+        { "source":"/service-worker.js", "headers": [{"key": "Cache-Control", "value": "no-cache"}] }
+      ]
     }
   ]
 }

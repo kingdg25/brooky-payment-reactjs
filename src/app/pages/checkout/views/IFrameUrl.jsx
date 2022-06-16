@@ -35,7 +35,7 @@ class IFrameUrl extends Component {
                         </Grid>
                     </DialogTitle>
                     <DialogContent>
-                        <iframe title="Authorization" width="500" height="300" src={this.props.IFrameResURL}>
+                        <iframe title="Authorization" width="500" height="300" id="sample-inline-frame" name="sample-inline-frame" src={this.props.IFrameResURL}>
                             {"Your browser doesn't support IFrame"}
                         </iframe>
                     </DialogContent>
