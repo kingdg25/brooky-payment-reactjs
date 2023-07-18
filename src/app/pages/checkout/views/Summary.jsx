@@ -87,28 +87,43 @@ class Summary extends Component {
                 await this.props.getFirebaseAuth()
             } else {
                 this.setState({ transactionID: this.props.match.params.id })
-                const result = await this.props.getCheckoutData({ transactionID: this.props.match.params.id })
-                // console.log(result)
-                if (result) {
-                    this.setState({
-                        result: result,
-                        amount: result.amount,
-                        paymentType: result.paymentType,
-                        schoolCode: result.client_code,
-                        refno: result.refno,
-                        outletId: result.outletId
+                const result = (await this.props.getCheckoutData({ transactionID: this.props.match.params.id }) || {})
+                this.paymentDataSubscribe = firebase.firestore()
+                    .collection("payments")
+                    .doc(this.props.match.params.id)
+                    .onSnapshot(async theData => {
+                        const result = theData.data()
+                        if (theData.exists){
+                            // console.log(result)
+                            if (result) {
+                                this.setState({
+                                    result: result,
+                                    amount: result.amount,
+                                    paymentType: result.paymentType,
+                                    schoolCode: result.client_code,
+                                    refno: result.refno,
+                                    outletId: result.outletId,
+                                    testing_mode: result.testing_mode
+                                })
+                            } else {
+                                this.setState({ result: undefined })
+                            }
+                        } else {
+                            this.setState({ result: undefined })
+                        }
                     })
-                } else {
-                    this.setState({ result: undefined })
-                }
             }
         })
+    }
+
+    componentWillUnmount(){
+        this.paymentDataSubscribe()
     }
 
     render() {
         const instruction =
             ((this.state.schoolCode || "").toLowerCase() === "demo" || (this.state.schoolCode || "").toLowerCase().trim().includes("staging") || 
-            (this.state.schoolCode || "").toLowerCase() === "") ? 
+            (this.state.schoolCode || "").toLowerCase() === "" || this.state.testing_mode === 1) ? 
             (
                 <iframe
                     title="Instruction"
