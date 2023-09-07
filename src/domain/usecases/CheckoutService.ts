@@ -50,6 +50,10 @@ export class CheckoutServiceImpl {
         return this.checkoutRepo.paymentGCash(data)
     }
 
+    async mayaCheckout(data: TransactionID): Promise<PaymentReturn> {
+        return this.checkoutRepo.mayaCheckout(data)
+    }
+
     async paymentOTC(data: PaymentOTC): Promise<PaymentOTCUrl> {
         return this.checkoutRepo.paymentOTC(data)
     }

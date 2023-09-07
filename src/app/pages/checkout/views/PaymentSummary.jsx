@@ -204,7 +204,7 @@ class PaymentSummary extends Component {
                                                 ? formatter.format(Math.round((Number(this.props.props.amount)) * 0.05 + 15))
                                                 : this.props.props.paymentType === "OtherPaymentOptions"
                                                 ? 0.0
-                                                : formatter.format(Math.round((Number(this.props.props.amount)) * 0.01 + 25))}
+                                                : this.props.props.paymentType === "maya" ? 0.0: formatter.format(Math.round((Number(this.props.props.amount)) * 0.01 + 25))}
                                         </Typography>
                                     </Grid>
                                 </Grid>}
@@ -240,7 +240,7 @@ class PaymentSummary extends Component {
                                                 ? formatter.format(Math.round((Number(this.props.props.amount)) * 1.05 + 15))
                                                 : this.props.props.paymentType === "OtherPaymentOptions"
                                                 ? formatter.format(Number(this.props.props.amount))
-                                                : formatter.format(Math.round((Number(this.props.props.amount)) * 1.01 + 25))}
+                                                : this.props.props.paymentType === "maya" ? formatter.format(Math.round((Number(this.props.props.amount)))): formatter.format(Math.round((Number(this.props.props.amount)) * 1.01 + 25))}
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -265,7 +265,7 @@ class PaymentSummary extends Component {
                                 ? "*7/11 - 5% + 15"
                                 : this.props.props.paymentType === "OtherPaymentOptions"
                                 ? ""
-                                : "*OTC - 1% + 25"}
+                                : this.props.props.paymentType === "maya" ? "" : "*OTC - 1% + 25"}
                         </Typography>
                     </Grid>
                 </Grid>

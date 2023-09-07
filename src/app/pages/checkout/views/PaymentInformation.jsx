@@ -191,6 +191,8 @@ class PaymentInformation extends Component {
                 >
                     <Grid item xs={12}>
                     <Container maxWidth="xs" disableGutters>
+                        {this.props.props.schoolCode !== "grandland" ?
+
                         <List component="nav" aria-label="mailbox folders">
                             {this.props.props.enable_type1 ?
                             (<div><ListItem button onClick={() => this.handleClick("credit")} >
@@ -243,7 +245,19 @@ class PaymentInformation extends Component {
                                 </ListItem> : ""}
                             </div> : <div></div>
                             }
+                        </List> : <div>
+
+                        <List component="nav" aria-label="mailbox folders">
+                            <ListItem button onClick={() => this.handleClick("maya")}>
+                                    <ListItemIcon>
+                                        <TripOrigin />
+                                    </ListItemIcon>
+                                    <Box height="40px" component="span" m={1}>
+                                        <CardMedia image="/maya.png" style={{ height: 50, width: 180 }} />
+                                    </Box>
+                                </ListItem>
                         </List>
+                            </div>}
                         {/* <Card
                             style={{
                                 width: "100%",
