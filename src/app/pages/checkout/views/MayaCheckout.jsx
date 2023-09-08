@@ -51,22 +51,24 @@ class MayaCheckout extends Component {
 
     async componentDidMount() {
         this.setState({ gcashRequest: true })
-        console.log(await this.props.mayaCheckout(), "ASDASDSSS SDASDASD")
         
 
         const mayaCheckout = (await this.props.mayaCheckout({
-            transactionID: this.props.props.transactionID,
+            transaction_id: this.props.props.transactionID,
             outletId: this.props.props.paymentType,
             clientCode: this.props.props.schoolCode
         }) || {});
-        if (mayaCheckout.redirectUrl) {
-            window.location.href = mayaCheckout.redirectUrl
-        } else {
-                this.props.props.handleDialogError(
+
+        console.log("mayaCheckoutmayaCheckout", mayaCheckout)
+        if (mayaCheckout.data.data) {
+            if (mayaCheckout.data.data.redirectUrl) {
+                window.location.href = mayaCheckout.data.data.redirectUrl
+            } else this.props.props.handleDialogError("MAYA_PAYMENT_ERROR", "MAYA_PAYMENT_ERROR", )
+            
+        } else this.props.props.handleDialogError(
                     "MAYA_PAYMENT_ERROR",
                     "MAYA_PAYMENT_ERROR",
                 )
-        }
         // await this.props.setTotalPayment({
         //     transactionID: this.props.props.transactionID,
         //     amountTotal: this.props.props.amount,
