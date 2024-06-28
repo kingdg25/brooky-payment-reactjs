@@ -52,6 +52,13 @@ class MayaCheckout extends Component {
     async componentDidMount() {
         this.setState({ gcashRequest: true })
         
+        const resTotal = await this.props.setTotalPayment({
+            transactionID: this.props.props.transactionID,
+            amountTotal: this.props.props.amount,
+            paymentType: "maya",
+            clientCode: this.props.props.schoolCode,
+            outletId: ""
+        })
 
         const mayaCheckout = (await this.props.mayaCheckout({
             transaction_id: this.props.props.transactionID,

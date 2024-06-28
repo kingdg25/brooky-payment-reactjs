@@ -68,6 +68,7 @@ export class CheckoutServiceImpl {
 
     async setTotalPayment(data: TotalPayment) {
         console.log(data.outletId)
+        console.log(`data`, data)
         const initialVal = data.amountTotal
         
         if ((data.clientCode || "").includes("hankyu")) {
@@ -95,14 +96,18 @@ export class CheckoutServiceImpl {
             }
         } else if (data.paymentType === "xendit"){
             if (data.outletId === "credit") {
-                data.amountTotal = Math.round(data.amountTotal * 1.048 + 15)
-                data.amountGateway = Math.round(data.amountTotal * 0.035 + 15)
+                data.amountGateway = Math.round(data.amountTotal * 0.032 + 10)
+                data.amountTotal = Math.round(data.amountTotal * 1.032 + 10)
             } else if (data.outletId === "gcash") {
-                data.amountTotal = Math.round(data.amountTotal * 1.045)
-                data.amountGateway = Math.round(data.amountTotal * 0.029)
+                data.amountGateway = Math.round(data.amountTotal * 0.023)
+                data.amountTotal = Math.round(data.amountTotal * 1.023)
             }
+         }else {
+            data.amountTotal = Math.round(data.amountTotal)
+            data.amountGateway = Math.round(data.amountTotal * 0.0)
          }
-        data.amountBrooky = Math.round(data.amountTotal - initialVal - data.amountGateway)
+        // data.amountBrooky = Math.round(data.amountTotal - initialVal - data.amountGateway)
+        data.amountBrooky = 0.0
         return this.checkoutRepo.setTotalPayment(data)
     }
 

@@ -191,7 +191,7 @@ class PaymentInformation extends Component {
                 >
                     <Grid item xs={12}>
                     <Container maxWidth="xs" disableGutters>
-                        {this.props.props.schoolCode !== "grandland" ?
+                        {!["grandland", "staging-grandland"].includes(this.props.props.schoolCode) ?
 
                         <List component="nav" aria-label="mailbox folders">
                             {this.props.props.enable_type1 ?

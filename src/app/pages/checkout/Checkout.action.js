@@ -272,13 +272,13 @@ export const chargeEWallet = data => {
 
 // TEST ACTION
 export const getCheckouts = () => {
-    return async (dispatch) => {
+    return async dispatch => {
         dispatch({ type: types.GET_CHECKOUTS_REQUESTS })
         try {
             const checkoutRepo = new CheckoutRepositoryImpl()
             const checkoutService = new CheckoutServiceImpl(checkoutRepo)
             const res = await checkoutService.getCheckouts()
-            console.log("getCheckoutsgetCheckouts ",res)
+            console.log("getCheckoutsgetCheckouts ", res)
             dispatch({ type: types.GET_CHECKOUTS_SUCCESS })
             return res
         } catch (error) {
