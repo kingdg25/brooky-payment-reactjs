@@ -1,4 +1,5 @@
 import { LocalStorageItems } from "../entities/LocalStorage"
+import { CheckoutRepository } from "../repositories/CheckoutRepository"
 import { LocalStorageRepository } from "../repositories/LocalStorageRepository"
 
 export interface LocalStorageService {
@@ -8,8 +9,10 @@ export interface LocalStorageService {
 
 export class LocalStorageServiceImpl implements LocalStorageService {
     localStorageRepo: LocalStorageRepository
+    checkoutRepo: CheckoutRepository
 
-    constructor(ir: LocalStorageRepository) {
+    constructor(ir: LocalStorageRepository, ch: CheckoutRepository) {
+        this.checkoutRepo = ch
         this.localStorageRepo = ir
     }
 

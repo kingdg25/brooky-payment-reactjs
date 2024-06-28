@@ -156,6 +156,13 @@ export class CheckoutRepositoryImpl implements CheckoutRepository {
         return result;
     }
 
+    async mayaCheckout(data: object): Promise<any> {
+        // TODO: call maya checkout cloud function API
+        const addMessage = firebase.functions().httpsCallable("maya-mayaCheckout")
+        return await addMessage(data)
+        return {"asdasd": ""}
+    }
+
     _checkoutsToMap (docRef: firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>): Checkout[] {
         const checkouts: any = []
         docRef.forEach( doc => {

@@ -197,14 +197,14 @@ class PaymentSummary extends Component {
                                     <Grid item xs={6} style={{ border: "1px solid lightslategray", padding: "8px" }}>
                                         <Typography style={{ textAlign: "start" }} variant="subtitle1" gutterBottom>
                                             {this.props.props.paymentType === "credit"
-                                                ? formatter.format(Math.round((Number(this.props.props.amount)) * 0.048 + 15))
+                                                ? formatter.format(Math.round((Number(this.props.props.amount)) * 0.032 + 10))
                                                 : this.props.props.paymentType === "gcash"
-                                                ? formatter.format(Math.round((Number(this.props.props.amount)) * 0.045))
+                                                ? formatter.format(Math.round((Number(this.props.props.amount)) * 0.023))
                                                 : this.props.props.paymentType === "7/11"
-                                                ? formatter.format(Math.round((Number(this.props.props.amount)) * 0.05 + 15))
+                                                ? formatter.format(Math.round((Number(this.props.props.amount)) * 0.015))
                                                 : this.props.props.paymentType === "OtherPaymentOptions"
                                                 ? 0.0
-                                                : formatter.format(Math.round((Number(this.props.props.amount)) * 0.01 + 25))}
+                                                : this.props.props.paymentType === "maya" ? formatter.format(Math.round((Number(this.props.props.amount)) * 0.018)): formatter.format(Math.round((Number(this.props.props.amount)) * 0.01 + 25))}
                                         </Typography>
                                     </Grid>
                                 </Grid>}
@@ -233,14 +233,14 @@ class PaymentSummary extends Component {
                                             gutterBottom
                                         >
                                             {(this.props.props.schoolCode || "").includes("hankyu") ? formatter.format(Math.round((Number(this.props.props.amount)))) : this.props.props.paymentType === "credit"
-                                                ? formatter.format(Math.round((Number(this.props.props.amount)) * 1.048 + 15))
+                                                ? formatter.format(Math.round((Number(this.props.props.amount)) * 1.032 + 10))
                                                 : this.props.props.paymentType === "gcash"
-                                                ? formatter.format(Math.round((Number(this.props.props.amount)) * 1.045))
+                                                ? formatter.format(Math.round((Number(this.props.props.amount)) * 1.023))
                                                 : this.props.props.paymentType === "7/11"
-                                                ? formatter.format(Math.round((Number(this.props.props.amount)) * 1.05 + 15))
+                                                ? formatter.format(Math.round((Number(this.props.props.amount)) * 1.015))
                                                 : this.props.props.paymentType === "OtherPaymentOptions"
                                                 ? formatter.format(Number(this.props.props.amount))
-                                                : formatter.format(Math.round((Number(this.props.props.amount)) * 1.01 + 25))}
+                                                : this.props.props.paymentType === "maya" ? formatter.format(Math.round((Number(this.props.props.amount)) * 1.018)): formatter.format(Math.round((Number(this.props.props.amount)) * 1.01 + 25))}
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -258,14 +258,14 @@ class PaymentSummary extends Component {
                     <Grid item xs={12} style={{ textAlign: "start", padding: "0px" }}>
                         <Typography style={{ textAlign: "start" }} variant="caption" gutterBottom>
                             {(this.props.props.schoolCode || "").includes("hankyu") ? <div></div> : this.props.props.paymentType === "credit"
-                                ? "*Credit/Debit Card - 4.8% + 15"
+                                ? "*Credit/Debit Card - 3.2% + 10"
                                 : this.props.props.paymentType === "gcash"
-                                ? "*GCash - 4.5%"
+                                ? "*GCash - 2.3%"
                                 : this.props.props.paymentType === "7/11"
-                                ? "*7/11 - 5% + 15"
+                                ? "*7/11 - 1.5%"
                                 : this.props.props.paymentType === "OtherPaymentOptions"
                                 ? ""
-                                : "*OTC - 1% + 25"}
+                                : this.props.props.paymentType === "maya" ? "Maya - 1.8%" : "*OTC - 1% + 25"}
                         </Typography>
                     </Grid>
                 </Grid>

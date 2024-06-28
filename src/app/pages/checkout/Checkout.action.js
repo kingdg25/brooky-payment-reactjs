@@ -80,6 +80,21 @@ export const paymentGCash = data => {
     }
 }
 
+export const mayaCheckout = data => {
+    return async dispatch => {
+        dispatch({ type: types.PAYMENT_MAYA_REQUEST })
+        try {
+            const checkoutRepo = new CheckoutRepositoryImpl()
+            const checkoutService = new CheckoutServiceImpl(checkoutRepo)
+            const items = await checkoutService.mayaCheckout(data)
+            dispatch({ type: types.PAYMENT_MAYA_SUCCESS, payload: items })
+            return items
+        } catch (error) {
+            dispatch({ type: types.PAYMENT_MAYA_ERROR, error })
+        }
+    }
+}
+
 export const paymentOTC = data => {
     return async dispatch => {
         dispatch({ type: types.PAYMENT_OTC_REQUEST })
@@ -257,13 +272,13 @@ export const chargeEWallet = data => {
 
 // TEST ACTION
 export const getCheckouts = () => {
-    return async (dispatch) => {
+    return async dispatch => {
         dispatch({ type: types.GET_CHECKOUTS_REQUESTS })
         try {
             const checkoutRepo = new CheckoutRepositoryImpl()
             const checkoutService = new CheckoutServiceImpl(checkoutRepo)
             const res = await checkoutService.getCheckouts()
-            console.log("getCheckoutsgetCheckouts ",res)
+            console.log("getCheckoutsgetCheckouts ", res)
             dispatch({ type: types.GET_CHECKOUTS_SUCCESS })
             return res
         } catch (error) {

@@ -10,9 +10,9 @@ const firebaseConfig = {
     storageBucket: "brooky-f041f.appspot.com",
     messagingSenderId: "184819832732",
     appId: "1:184819832732:web:e4da064c2d7283719ada59",
-    measurementId: "G-F4GQW207KC"
-  }
+    measurementId: "G-F4GQW207KC",
+}
 
 const firebaseApp = firebase.initializeApp(firebaseConfig)
 
-export {firebaseApp}
+export { firebaseApp }
