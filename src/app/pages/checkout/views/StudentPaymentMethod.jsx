@@ -10,6 +10,7 @@ import StudentCreditCard from "./StudentCreditCard"
 import StudentGCash from "./StudentGCash"
 import StudentOTC from "./StudentOTC"
 import PaymentSummary from "./PaymentSummary"
+import MayaCheckout from "./MayaCheckout"
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -39,6 +40,8 @@ function getStepContent(step, props, handleNext, handleBack) {
                 <StudentCreditCard handleBack={handleBack} props={props} />
             ) : props.paymentType === "gcash" ? (
                 <StudentGCash handleBack={handleBack} props={props} />
+            ) : props.paymentType === "maya" ? (
+                <MayaCheckout handleBack={handleBack} props={props} />
             ) : (
                 <StudentOTC handleBack={handleBack} props={props} />
             )

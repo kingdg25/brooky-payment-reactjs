@@ -221,7 +221,7 @@ function checkout(state = initialState, action = null) {
                 ...state,
                 loading: false,
             }
-            // TEST
+        // TEST
         case types.GET_CHECKOUTS_REQUESTS:
             return {
                 ...state,
@@ -238,7 +238,7 @@ function checkout(state = initialState, action = null) {
             return {
                 ...state,
                 loading: false,
-                error: action.error
+                error: action.error,
             }
         default:
             return state

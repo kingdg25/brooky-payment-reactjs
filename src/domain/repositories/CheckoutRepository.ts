@@ -33,4 +33,5 @@ export interface CheckoutRepository {
     getPaymentGatewayDetails(id: string): Promise<PaymentGatewayDetails>
     chargeCredit(data: object): Promise<ChargeDetails>
     chargeEWallet(data: object): Promise<any>
+    mayaCheckout(data: object): Promise<any>
 }
